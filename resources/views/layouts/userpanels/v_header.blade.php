@@ -89,6 +89,9 @@
             position: fixed;
             padding: 10px;
             background-clip: padding-box;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(20, 21, 33, 0.175);
             border-radius: 0.625rem;
             outline: 0;
             z-index: 9999;
@@ -97,7 +100,6 @@
             background-color: #ffffff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             border: 1px solid rgba(20, 21, 33, 0.175);
-
         }
         .light-layout #image-popup {
             background-color: #30334e;
