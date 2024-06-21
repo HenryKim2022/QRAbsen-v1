@@ -308,9 +308,9 @@
         // Set the current time, target time, and stop time
         const currentTime = new Date();
         const targetDate = new Date();
-        targetDate.setHours(17, 01, 0, 0); // Set the target time to 17:01 PM
+        targetDate.setHours(06, 00, 0, 0); // Set the target time to 06:00 AM
         const stopTime = new Date();
-        stopTime.setHours(06, 00, 0, 0); // Set the stop time to 06:00 AM
+        stopTime.setHours(17, 01, 0, 0); // Set the stop time to 17:01 PM
 
         // If the target time or stop time has already passed for today, move them to tomorrow
         if (targetDate <= currentTime) {
