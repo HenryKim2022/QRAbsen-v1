@@ -66,7 +66,7 @@
                                         <!-- profile picture -->
                                         <div class="profile-img-container d-flex align-items-center">
                                             <div class="profile-img">
-                                                <img src="{{ $authenticated_user_data->foto_karyawan == null ? env('APP_DEFAULT_AVATAR') : 'public/storage/avatar/uploads/' . $authenticated_user_data->foto_karyawan }}"
+                                                <img src="{{ $authenticated_user_data->foto_karyawan == null ? env('APP_DEFAULT_AVATAR') : 'public/avatar/uploads/' . $authenticated_user_data->foto_karyawan }}"
                                                     class="rounded img-fluid" alt="Card image" />
                                             </div>
                                             <!-- profile title -->
@@ -233,7 +233,7 @@
                                                 <!-- header media -->
                                                 <div class="media">
                                                     <a href="javascript:void(0);" class="mr-25">
-                                                        <img src="{{ $authenticated_user_data->foto_karyawan == null ? env('APP_DEFAULT_AVATAR') : 'public/storage/avatar/uploads/' . $authenticated_user_data->foto_karyawan }}"
+                                                        <img src="{{ $authenticated_user_data->foto_karyawan == null ? env('APP_DEFAULT_AVATAR') : 'public/avatar/uploads/' . $authenticated_user_data->foto_karyawan }}"
                                                             id="account-upload-img" class="rounded mr-50" alt="profile image"
                                                             height="80" width="80" />
                                                     </a>
@@ -298,7 +298,7 @@
                                                         var resetButton = document.querySelector('.acc-avatar-reset');
                                                         resetButton.addEventListener('click', function() {
                                                             userProfilePhotoPreview.src =
-                                                                '{{ $authenticated_user_data->foto_karyawan == null ? env('APP_DEFAULT_AVATAR') : 'public/storage/avatar/uploads/' . $authenticated_user_data->foto_karyawan }}';
+                                                                '{{ $authenticated_user_data->foto_karyawan == null ? env('APP_DEFAULT_AVATAR') : 'public/avatar/uploads/' . $authenticated_user_data->foto_karyawan }}';
                                                             userProfilePhotoInput.value = null;
                                                         });
                                                     });

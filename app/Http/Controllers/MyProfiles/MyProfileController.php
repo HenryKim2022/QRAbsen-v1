@@ -96,8 +96,9 @@ class MyProfileController extends Controller
                 $file = $request->file('foto_karyawan');
                 $filename = uniqid() . '.' . $file->getClientOriginalExtension();
                 // Store the uploaded file in the storage/app/public directory
-                Storage::putFileAs('public/avatar/uploads', $file, $filename);
                 // $karyawan->foto_karyawan = asset('public/avatar/uploads/' . $filename);
+                // Storage::putFileAs('public/avatar/uploads', $file, $filename);
+                $file->move(public_path('avatar/uploads'), $filename);
                 $karyawan->foto_karyawan = $filename;
                 $karyawan->save();
 
