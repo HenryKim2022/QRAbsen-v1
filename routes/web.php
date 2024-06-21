@@ -1,0 +1,102 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Landings\LandingController;
+use App\Http\Controllers\UserPanels\UserPanelController;
+use App\Http\Controllers\Auth\AuthController;
+
+use App\Http\Controllers\Absens\AbsenController;
+use App\Http\Controllers\Employees\EmployeeController;
+use App\Http\Controllers\OfficeRoles\OfficeRoleController;
+use App\Http\Controllers\UserLogins\UserLoginController;
+use App\Http\Controllers\MyProfiles\MyProfileController;
+
+use App\Http\Middleware\Authenticate;
+use Illuminate\Auth\Middleware\Authenticate as MiddlewareAuthenticate;
+
+////////////////////////////////////////////////// END: IMPORTING MODULES /////////////////////////////////////////////////////////
+
+Route::get('/', 'App\Http\Controllers\Landings\LandingController@index')->name('landing.page');
+
+Route::prefix('')->name('login.')->middleware('guest')->group(function () {
+    Route::get('/login', 'App\Http\Controllers\Auth\AuthController@showLogin')->name('page');
+    Route::post('/login', 'App\Http\Controllers\Auth\AuthController@doLogin')->name('do');
+});
+
+Route::prefix('')->name('register.')->middleware('guest')->group(function () {
+    Route::get('/register', 'App\Http\Controllers\Auth\AuthController@showRegister')->name('page');
+    Route::post('/register', 'App\Http\Controllers\Auth\AuthController@doRegister')->name('do');
+});
+
+Route::prefix('')->name('landing.')->group(function () {
+    Route::get('/landing-page', 'App\Http\Controllers\Landings\LandingController@index')->name('page');
+    Route::get('/landing-page/logout', 'App\Http\Controllers\Auth\AuthController@doLogoutULanding')->name('logout.redirect');
+});
+
+Route::prefix('')->name('userPanels.')->middleware('auth')->group(function () {
+    Route::get('/dashboard', 'App\Http\Controllers\UserPanels\UserPanelController@index')->name('dashboard');
+    Route::get('/dashboard/absen-in', 'App\Http\Controllers\UserPanels\UserPanelController@loadAbsenModal_In')->name('absen.load');
+    Route::get('/dashboard/absen-out', 'App\Http\Controllers\UserPanels\UserPanelController@loadAbsenModal_Out')->name('absen.load');
+    Route::post('/dashboard/absen/do-in', 'App\Http\Controllers\UserPanels\UserPanelController@doAbsenInViaModal')->name('absen.do.in');
+    Route::post('/dashboard/absen/do-out', 'App\Http\Controllers\UserPanels\UserPanelController@doAbsenOutViaModal')->name('absen.do.out');
+    Route::get('/logout', 'App\Http\Controllers\Auth\AuthController@doLogoutUPanel')->name('logout.redirect');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/my-profile', 'App\Http\Controllers\MyProfiles\MyProfileController@index')->name('userPanels.myprofile');
+    Route::post('/my-profile', 'App\Http\Controllers\MyProfiles\MyProfileController@index')->name('userPanels.myprofile');
+    Route::post('/my-profile/edit-acc-avatar', 'App\Http\Controllers\MyProfiles\MyProfileController@profile_edit_avatar')->name('userPanels.avatar.edit');
+    Route::post('/my-profile/edit-biodata', 'App\Http\Controllers\MyProfiles\MyProfileController@profile_edit_biodata')->name('userPanels.biodata.edit');
+    Route::post('/my-profile/edit-accdata', 'App\Http\Controllers\MyProfiles\MyProfileController@profile_edit_accdata')->name('userPanels.accdata.edit');
+    Route::get('/my-profile/edit-accdata', 'App\Http\Controllers\MyProfiles\MyProfileController@profile_edit_accdata')->name('userPanels.accdata.edit');
+    Route::get('/my-profile/load-biodata', 'App\Http\Controllers\MyProfiles\MyProfileController@profile_load_biodata')->name('userPanels.biodata.load');
+    Route::get('/my-profile/load-accdata', 'App\Http\Controllers\MyProfiles\MyProfileController@profile_load_accdata')->name('userPanels.accdata.load');
+});
+
+
+// Tutorial Laravel 11:
+Route::middleware(['auth'])->group(function () {
+    Route::get('/my-profile', [MyProfileController::class, 'index'])->name('userPanels.myprofile');
+});
+
+
+
+Route::middleware('auth')->group(function () {
+    // Route::get('/my-profile', [MyProfileController::class, 'index'])->name('userPanels.myprofile');
+    // Route::post('/my-profile', [MyProfileController::class, 'index'])->name('userPanels.myprofile');
+    Route::post('/my-profile/edit-acc-avatar', [MyProfileController::class, 'profile_edit_avatar'])->name('userPanels.avatar.edit');
+    Route::post('/my-profile/edit-biodata', [MyProfileController::class, 'profile_edit_biodata'])->name('userPanels.biodata.edit');
+    Route::post('/my-profile/edit-accdata', [MyProfileController::class, 'profile_edit_accdata'])->name('userPanels.accdata.edit');
+    Route::get('/my-profile/edit-accdata', [MyProfileController::class, 'profile_edit_accdata'])->name('userPanels.accdata.edit');
+    Route::get('/my-profile/load-biodata', [MyProfileController::class, 'profile_load_biodata'])->name('userPanels.biodata.load');
+    Route::get('/my-profile/load-accdata', [MyProfileController::class, 'profile_load_accdata'])->name('userPanels.accdata.load');
+});
+
+
+
+////////////////////////////////////////////////// END: OLD WAY (DONOT REMOVE) /////////////////////////////////////////////////////////
+// Route::get('/', function () {
+//     return view('landings');
+// });
+
+// Route::get('/login', 'AuthController@showLogin')->name('login.page');
+// Route::get('/register', 'AuthController@showRegister')->name('register.page');
+
+// Route::prefix('')->name('userPanels.')->group(function () {      /// BEFORE APPLY AUTH
+//     Route::get('/dashboard', 'UserPanelController@index')->name('dashboard');
+//     Route::get('/logout', 'AuthController@doLogoutUPanel')->name('logout.redirect');
+// });
+
+
+// Route::get('/my-profile', [MyProfileController::class, 'index'])->name('userPanels.myprofile');
+// Route::middleware('auth')->group(function () {
+//     // Route::get('/my-profile', [MyProfileController::class, 'index'])->name('userPanels.myprofile');
+//     // Route::post('/my-profile', [MyProfileController::class, 'index'])->name('userPanels.myprofile');
+//     Route::post('/my-profile/edit-acc-avatar', [MyProfileController::class, 'profile_edit_avatar'])->name('userPanels.avatar.edit');
+//     Route::post('/my-profile/edit-biodata', [MyProfileController::class, 'profile_edit_biodata'])->name('userPanels.biodata.edit');
+//     Route::post('/my-profile/edit-accdata', [MyProfileController::class, 'profile_edit_accdata'])->name('userPanels.accdata.edit');
+//     Route::get('/my-profile/edit-accdata', [MyProfileController::class, 'profile_edit_accdata'])->name('userPanels.accdata.edit');
+//     Route::get('/my-profile/load-biodata', [MyProfileController::class, 'profile_load_biodata'])->name('userPanels.biodata.load');
+//     Route::get('/my-profile/load-accdata', [MyProfileController::class, 'profile_load_accdata'])->name('userPanels.accdata.load');
+// });
+
