@@ -84,6 +84,11 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             border: 1px solid rgba(20, 21, 33, 0.175);
         }
+        .light-layout .dark-layout #image-popup {
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(20, 21, 33, 0.175);
+        }
         .light-layout #image-popup {
             background-color: #30334e;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
