@@ -33,8 +33,8 @@
                     </div>
                 </div>
             </div>
-            {{-- @guest --}}
-            <!-- QRCode Logins Card -->
+
+            <!-- QRCode Logins/ Logouts Card -->
             <div class="col-lg-4 col-md-6 col-12">
                 <div class="card card-developer-meetup">
                     <div class="meetup-img-wrapper rounded-top text-center">
@@ -62,7 +62,7 @@
                         <div class="avatar-group h-auto w-auto d-flex align-items-center justify-content-center">
                             <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom"
                                 data-original-title="ScanMe :)" class="pull-up">
-                                <img class="img-fluid rounded-0" src="data:image/png;base64,{{ $loginQRCode }}"
+                                <img class="img-fluid rounded-0 hover-image" src="data:image/png;base64,{{ $loginQRCode }}"
                                     alt="QR Image">
                             </div>
                         </div>
@@ -70,7 +70,7 @@
                 </div>
             </div>
             <!--/ Developer Meetup Card -->
-            {{-- @endguest --}}
+
 
         </div>
 
