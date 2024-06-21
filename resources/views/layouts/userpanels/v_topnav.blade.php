@@ -255,7 +255,7 @@
                     id="dropdown-user" href="javascript:void(0);" data-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false">
                     <div class="user-nav d-sm-flex d-none"><span class="user-name font-weight-bolder">{{ $authenticated_user_data->na_karyawan ?: 'My Girlfriend :)' }}
-                    </span><span class="user-status">{{ $authenticated_user_data->type ?: $authenticated_user_data->daftar_login->type }}</span></div><span class="avatar"><img
+                    </span><span class="user-status">{{ $authenticated_user_data->daftar_login->type ?: 'The Only One :)' }}</span></div><span class="avatar"><img
                             class="round"
                             src="{{ $authenticated_user_data->foto_karyawan === null ? env('APP_DEFAULT_AVATAR') : 'public/avatar/uploads/' . $authenticated_user_data->foto_karyawan }}"
                             alt="avatar" height="40" width="40"><span
