@@ -32,10 +32,9 @@
                                         <th>Employee Name</th>
                                         <th>Username</th>
                                         <th>Email</th>
-                                        <th>Avatar</th>
-                                        <th>Created</th>
-                                        <th>Last-Update</th>
-                                        <th>Act</th>
+                                        <th>Proof</th>
+                                        <th>Check-in</th>
+                                        <th>Check-out</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -45,52 +44,28 @@
                                             <td>{{ $userLogin->username ?: '-' }}</td>
                                             <td>{{ $userLogin->email ?: '-' }}</td>
                                             <td>
-                                                @if ($userLogin->karyawan->foto_karyawan)
+                                                @if ($userLogin->bukti)
                                                     <div class="d-flex align-items-center justify-content-around">
-                                                        <img src="{{ 'public/avatar/uploads/' . $userLogin->karyawan->foto_karyawan }}"
-                                                            alt="Proof 0" style="height: 24px; width: 24px;"
-                                                            class="hover-image">
-                                                    </div>
-                                                @else
-                                                    <div class="d-flex align-items-center justify-content-around">
-                                                        <img src="{{ env('APP_DEFAULT_AVATAR') }}" alt="Proof 0"
+                                                        <img src="{{ $userLogin->bukti }}" alt="Proof 0"
                                                             style="height: 24px; width: 24px;" class="hover-image">
                                                     </div>
-                                                @endif
-                                            </td>
-                                            <td>
-                                                @if ($userLogin->created_at)
-                                                    {{ \Carbon\Carbon::parse($userLogin->created_at)->isoFormat('dddd, DD MMMM YYYY, h:mm:ss A') }}
                                                 @else
                                                     -
                                                 @endif
                                             </td>
                                             <td>
-                                                @if ($userLogin->updated_at)
-                                                    {{ \Carbon\Carbon::parse($userLogin->updated_at)->isoFormat('dddd, DD MMMM YYYY, h:mm:ss A') }}
+                                                @if ($userLogin->checkin)
+                                                    {{ \Carbon\Carbon::parse($userLogin->checkin)->isoFormat('dddd, DD MMMM YYYY, h:mm:ss A') }}
                                                 @else
                                                     -
                                                 @endif
                                             </td>
                                             <td>
-                                                <div class="dropdown">
-                                                    <button class="btn btn-icon navbar-toggler" type="button" id="tableActionDropdown"
-                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                        <i data-feather="align-justify" class="font-medium-5"></i>
-                                                    </button>
-                                                    <!-- dropdown menu -->
-                                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="tableActionDropdown">
-                                                        <a class="dropdown-item d-flex align-items-center" href="#">
-                                                            <i data-feather="edit" class="mr-1" style="color: #28c76f;"></i>
-                                                            Edit
-                                                        </a>
-                                                        <a class="dropdown-item d-flex align-items-center" href="#">
-                                                            <i data-feather="trash" class="mr-1" style="color: #ea5455;"></i>
-                                                            Delete
-                                                        </a>
-                                                    </div>
-                                                    <!--/ dropdown menu -->
-                                                </div>
+                                                @if ($userLogin->checkout)
+                                                    {{ \Carbon\Carbon::parse($userLogin->checkout)->isoFormat('dddd, DD MMMM YYYY, h:mm:ss A') }}
+                                                @else
+                                                    -
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach

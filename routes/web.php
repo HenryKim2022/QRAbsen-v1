@@ -90,6 +90,12 @@ Route::middleware('auth')->group(function () {
     Route::post('/m-absen/edit', [AbsenController::class, 'edit_absen'])->name('m.absen.edit');
     Route::post('/m-absen/delete', [AbsenController::class, 'delete_absen'])->name('m.absen.del');
 });
+Route::middleware('auth')->group(function () {
+    Route::get('/m-user', [UserLoginController::class, 'index'])->name('m.user');
+    Route::post('/m-user/add', [UserLoginController::class, 'add_user'])->name('m.user.add');
+    Route::post('/m-user/edit', [UserLoginController::class, 'edit_user'])->name('m.user.edit');
+    Route::post('/m-user/delete', [UserLoginController::class, 'delete_user'])->name('m.user.del');
+});
 
 
 

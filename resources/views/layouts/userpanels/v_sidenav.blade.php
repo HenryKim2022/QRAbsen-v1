@@ -95,7 +95,7 @@
                             data-feather="users"></i><span class="menu-title text-truncate"
                             data-i18n="Users">Accounts</span></a>
                     <ul class="menu-content">
-                        <li><a class="d-flex align-items-center" href="app-user-list.html"><i
+                        <li><a class="d-flex align-items-center" href="{{ route('m.user') }}"><i
                                     data-feather="circle"></i><span class="menu-item text-truncate"
                                     data-i18n="User List">User List</span></a>
                         </li>

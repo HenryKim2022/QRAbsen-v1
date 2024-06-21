@@ -2,7 +2,7 @@
 <nav class="header-navbar navbar navbar-expand-lg align-items-center floating-nav navbar-dark navbar-shadow">
     <div class="navbar-container d-flex content">
         <div class="bookmark-wrapper d-flex align-items-center">
-            <ul class="nav navbar-nav d-xl-none">
+            <ul class="nav navbar-nav d-xl-none mr-1">
                 <li class="nav-item"><a class="nav-link menu-toggle" href="javascript:void(0);"><i class="ficon"
                             data-feather="menu"></i></a></li>
             </ul>
@@ -29,6 +29,31 @@
                     </div>
                 </li>
             </ul> --}}
+            @if (isset($modalData))
+                <ul class="nav navbar-nav d-flex justify-content-between gap-2">
+                    @if (isset($modalData['modal_add']))
+                        <li class="nav-item" onclick="openModal('{{ $modalData['modal_add'] }}')">
+                            <a class="dropdown-item d-flex align-items-center border rounded border-success add-new-record"
+                                data-bs-toggle="tooltip" data-bs-placement="top" title="Add New Record!">
+                                <span><i class="ficon text-success" data-feather="plus-circle"></i></span>
+                                <span class="d-none d-lg-block ml-1">Add Record</span>
+                            </a>
+                        </li>
+
+                    @endif
+                    @if (isset($modalData['modal_reset']))
+                        <li class="nav-item ml-1" onclick="openModal('{{ $modalData['modal_reset'] }}')" >
+                            <a class="dropdown-item d-flex align-items-center border rounded border-warning reset-all-record"
+                                data-bs-toggle="tooltip" data-bs-placement="top" title="Reset all Records!">
+                                <span><i class="ficon text-warning" data-feather="refresh-cw"></i></span>
+                                <span class="d-none d-lg-block ml-1">Reset Records</span>
+                            </a>
+                        </li>
+
+                    @endif
+                </ul>
+
+            @endif
         </div>
         <ul class="nav navbar-nav align-items-center ml-auto">
             <li class="nav-item dropdown dropdown-language d-none"><a class="nav-link dropdown-toggle"
@@ -49,8 +74,8 @@
                         data-feather="search"></i></a>
                 <div class="search-input">
                     <div class="search-input-icon"><i data-feather="search"></i></div>
-                    <input class="form-control input" type="text" placeholder="Explore {{ env('APP_NAME') }}..." tabindex="-1"
-                        data-search="search">
+                    <input class="form-control input" type="text" placeholder="Explore {{ env('APP_NAME') }}..."
+                        tabindex="-1" data-search="search">
                     <div class="search-input-close"><i data-feather="x"></i></div>
                     <ul class="search-list search-list-main"></ul>
                 </div>
@@ -67,13 +92,12 @@
                     </li>
                     <li class="scrollable-container media-list">
                         <div class="media align-items-center"><img class="d-block rounded mr-1"
-                                src="{{ 'public/vuexy/app-assets/images/pages/eCommerce/1.png' }}"
-                                alt="donuts" width="62">
+                                src="{{ 'public/vuexy/app-assets/images/pages/eCommerce/1.png' }}" alt="donuts"
+                                width="62">
                             <div class="media-body"><i class="ficon cart-item-remove" data-feather="x"></i>
                                 <div class="media-heading">
-                                    <h6 class="cart-item-title"><a class="text-body"
-                                            href="app-ecommerce-details.html"> Apple watch 5</a></h6><small
-                                        class="cart-item-by">By Apple</small>
+                                    <h6 class="cart-item-title"><a class="text-body" href="app-ecommerce-details.html">
+                                            Apple watch 5</a></h6><small class="cart-item-by">By Apple</small>
                                 </div>
                                 <div class="cart-item-qty">
                                     <div class="input-group">
@@ -84,8 +108,8 @@
                             </div>
                         </div>
                         <div class="media align-items-center"><img class="d-block rounded mr-1"
-                                src="{{ 'public/vuexy/app-assets/images/pages/eCommerce/7.png' }}"
-                                alt="donuts" width="62">
+                                src="{{ 'public/vuexy/app-assets/images/pages/eCommerce/7.png' }}" alt="donuts"
+                                width="62">
                             <div class="media-body"><i class="ficon cart-item-remove" data-feather="x"></i>
                                 <div class="media-heading">
                                     <h6 class="cart-item-title"><a class="text-body"
@@ -101,8 +125,8 @@
                             </div>
                         </div>
                         <div class="media align-items-center"><img class="d-block rounded mr-1"
-                                src="{{ 'public/vuexy/app-assets/images/pages/eCommerce/2.png' }}"
-                                alt="donuts" width="62">
+                                src="{{ 'public/vuexy/app-assets/images/pages/eCommerce/2.png' }}" alt="donuts"
+                                width="62">
                             <div class="media-body"><i class="ficon cart-item-remove" data-feather="x"></i>
                                 <div class="media-heading">
                                     <h6 class="cart-item-title"><a class="text-body"
@@ -118,8 +142,8 @@
                             </div>
                         </div>
                         <div class="media align-items-center"><img class="d-block rounded mr-1"
-                                src="{{ 'public/vuexy/app-assets/images/pages/eCommerce/3.png' }}"
-                                alt="donuts" width="62">
+                                src="{{ 'public/vuexy/app-assets/images/pages/eCommerce/3.png' }}" alt="donuts"
+                                width="62">
                             <div class="media-body"><i class="ficon cart-item-remove" data-feather="x"></i>
                                 <div class="media-heading">
                                     <h6 class="cart-item-title"><a class="text-body"
@@ -135,8 +159,8 @@
                             </div>
                         </div>
                         <div class="media align-items-center"><img class="d-block rounded mr-1"
-                                src="{{ 'public/vuexy/app-assets/images/pages/eCommerce/5.png' }}"
-                                alt="donuts" width="62">
+                                src="{{ 'public/vuexy/app-assets/images/pages/eCommerce/5.png' }}" alt="donuts"
+                                width="62">
                             <div class="media-body"><i class="ficon cart-item-remove" data-feather="x"></i>
                                 <div class="media-heading">
                                     <h6 class="cart-item-title"><a class="text-body"
@@ -254,9 +278,11 @@
             <li class="nav-item dropdown dropdown-user"><a class="nav-link dropdown-toggle dropdown-user-link"
                     id="dropdown-user" href="javascript:void(0);" data-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false">
-                    <div class="user-nav d-sm-flex d-none"><span class="user-name font-weight-bolder">{{ $authenticated_user_data->na_karyawan ?: 'My Girlfriend :)' }}
-                    </span><span class="user-status">{{ $authenticated_user_data->daftar_login->type ?: 'The Only One :)' }}</span></div><span class="avatar"><img
-                            class="round"
+                    <div class="user-nav d-sm-flex d-none"><span
+                            class="user-name font-weight-bolder">{{ $authenticated_user_data->na_karyawan ?: 'My Girlfriend :)' }}
+                        </span><span
+                            class="user-status">{{ $authenticated_user_data->daftar_login->type ?: 'The Only One :)' }}</span>
+                    </div><span class="avatar"><img class="round"
                             src="{{ $authenticated_user_data->foto_karyawan === null ? env('APP_DEFAULT_AVATAR') : 'public/avatar/uploads/' . $authenticated_user_data->foto_karyawan }}"
                             alt="avatar" height="40" width="40"><span
                             class="avatar-status-online"></span></span>
@@ -264,15 +290,23 @@
 
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-user">
-                    <a class="dropdown-item" href="{{ route('userPanels.myprofile') }}"><i class="mr-50" data-feather="user"></i> Profile</a>
-                    <a class="dropdown-item d-none" href="app-email.html"><i class="mr-50" data-feather="mail"></i> Inbox</a>
-                    <a class="dropdown-item d-none" href="app-todo.html"><i class="mr-50" data-feather="check-square"></i> Task</a>
-                    <a class="dropdown-item d-none" href="app-chat.html"><i class="mr-50" data-feather="message-square"></i> Chats</a>
+                    <a class="dropdown-item" href="{{ route('userPanels.myprofile') }}"><i class="mr-50"
+                            data-feather="user"></i> Profile</a>
+                    <a class="dropdown-item d-none" href="app-email.html"><i class="mr-50" data-feather="mail"></i>
+                        Inbox</a>
+                    <a class="dropdown-item d-none" href="app-todo.html"><i class="mr-50"
+                            data-feather="check-square"></i> Task</a>
+                    <a class="dropdown-item d-none" href="app-chat.html"><i class="mr-50"
+                            data-feather="message-square"></i> Chats</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item d-none" href="page-account-settings.html"><i class="mr-50" data-feather="settings"></i> Settings</a>
-                    <a class="dropdown-item d-none" href="page-pricing.html"><i class="mr-50" data-feather="credit-card"></i> Pricing</a>
-                    <a class="dropdown-item d-none" href="page-faq.html"><i class="mr-50" data-feather="help-circle"></i> FAQ</a>
-                    <a class="dropdown-item" href="{{ route('userPanels.logout.redirect') }}"><i class="mr-50" data-feather="power"></i> Logout</a>
+                    <a class="dropdown-item d-none" href="page-account-settings.html"><i class="mr-50"
+                            data-feather="settings"></i> Settings</a>
+                    <a class="dropdown-item d-none" href="page-pricing.html"><i class="mr-50"
+                            data-feather="credit-card"></i> Pricing</a>
+                    <a class="dropdown-item d-none" href="page-faq.html"><i class="mr-50"
+                            data-feather="help-circle"></i> FAQ</a>
+                    <a class="dropdown-item" href="{{ route('userPanels.logout.redirect') }}"><i class="mr-50"
+                            data-feather="power"></i> Logout</a>
                 </div>
             </li>
         </ul>
@@ -286,8 +320,8 @@
     <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between w-100"
             href="app-file-manager.html">
             <div class="d-flex">
-                <div class="mr-75"><img src="{{ 'public/vuexy/app-assets/images/icons/xls.png' }}"
-                        alt="png" height="32"></div>
+                <div class="mr-75"><img src="{{ 'public/vuexy/app-assets/images/icons/xls.png' }}" alt="png"
+                        height="32"></div>
                 <div class="search-data">
                     <p class="search-data-title mb-0">Two new item submitted</p><small class="text-muted">Marketing
                         Manager</small>
@@ -297,8 +331,8 @@
     <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between w-100"
             href="app-file-manager.html">
             <div class="d-flex">
-                <div class="mr-75"><img src="{{ 'public/vuexy/app-assets/images/icons/jpg.png' }}"
-                        alt="png" height="32"></div>
+                <div class="mr-75"><img src="{{ 'public/vuexy/app-assets/images/icons/jpg.png' }}" alt="png"
+                        height="32"></div>
                 <div class="search-data">
                     <p class="search-data-title mb-0">52 JPG file Generated</p><small class="text-muted">FontEnd
                         Developer</small>
@@ -308,8 +342,8 @@
     <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between w-100"
             href="app-file-manager.html">
             <div class="d-flex">
-                <div class="mr-75"><img src="{{ 'public/vuexy/app-assets/images/icons/pdf.png' }}"
-                        alt="png" height="32"></div>
+                <div class="mr-75"><img src="{{ 'public/vuexy/app-assets/images/icons/pdf.png' }}" alt="png"
+                        height="32"></div>
                 <div class="search-data">
                     <p class="search-data-title mb-0">25 PDF File Uploaded</p><small class="text-muted">Digital
                         Marketing Manager</small>
@@ -319,8 +353,8 @@
     <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between w-100"
             href="app-file-manager.html">
             <div class="d-flex">
-                <div class="mr-75"><img src="{{ 'public/vuexy/app-assets/images/icons/doc.png' }}"
-                        alt="png" height="32"></div>
+                <div class="mr-75"><img src="{{ 'public/vuexy/app-assets/images/icons/doc.png' }}" alt="png"
+                        height="32"></div>
                 <div class="search-data">
                     <p class="search-data-title mb-0">Anna_Strong.doc</p><small class="text-muted">Web
                         Designer</small>
@@ -334,8 +368,8 @@
             href="app-user-view.html">
             <div class="d-flex align-items-center">
                 <div class="avatar mr-75"><img
-                        src="{{ 'public/vuexy/app-assets/images/portrait/small/avatar-s-8.jpg' }}"
-                        alt="png" height="32"></div>
+                        src="{{ 'public/vuexy/app-assets/images/portrait/small/avatar-s-8.jpg' }}" alt="png"
+                        height="32"></div>
                 <div class="search-data">
                     <p class="search-data-title mb-0">John Doe</p><small class="text-muted">UI designer</small>
                 </div>
@@ -345,8 +379,8 @@
             href="app-user-view.html">
             <div class="d-flex align-items-center">
                 <div class="avatar mr-75"><img
-                        src="{{ 'public/vuexy/app-assets/images/portrait/small/avatar-s-1.jpg' }}"
-                        alt="png" height="32"></div>
+                        src="{{ 'public/vuexy/app-assets/images/portrait/small/avatar-s-1.jpg' }}" alt="png"
+                        height="32"></div>
                 <div class="search-data">
                     <p class="search-data-title mb-0">Michal Clark</p><small class="text-muted">FontEnd
                         Developer</small>
@@ -357,8 +391,8 @@
             href="app-user-view.html">
             <div class="d-flex align-items-center">
                 <div class="avatar mr-75"><img
-                        src="{{ 'public/vuexy/app-assets/images/portrait/small/avatar-s-14.jpg' }}"
-                        alt="png" height="32"></div>
+                        src="{{ 'public/vuexy/app-assets/images/portrait/small/avatar-s-14.jpg' }}" alt="png"
+                        height="32"></div>
                 <div class="search-data">
                     <p class="search-data-title mb-0">Milena Gibson</p><small class="text-muted">Digital Marketing
                         Manager</small>
@@ -369,8 +403,8 @@
             href="app-user-view.html">
             <div class="d-flex align-items-center">
                 <div class="avatar mr-75"><img
-                        src="{{ 'public/vuexy/app-assets/images/portrait/small/avatar-s-6.jpg' }}"
-                        alt="png" height="32"></div>
+                        src="{{ 'public/vuexy/app-assets/images/portrait/small/avatar-s-6.jpg' }}" alt="png"
+                        height="32"></div>
                 <div class="search-data">
                     <p class="search-data-title mb-0">Anna Strong</p><small class="text-muted">Web Designer</small>
                 </div>
@@ -384,3 +418,8 @@
                     data-feather="alert-circle"></span><span>No results found.</span></div>
         </a></li>
 </ul>
+
+
+
+
+
