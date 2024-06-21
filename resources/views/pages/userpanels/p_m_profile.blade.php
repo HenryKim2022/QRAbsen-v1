@@ -104,12 +104,17 @@
                                         </div>
                                     </div>
 
-                                    {{-- <!-- tabs pill -->
+                                    <!-- tabs pill -->
                                     <div class="profile-header-nav">
                                         <!-- navbar -->
                                         <nav
                                             class="navbar navbar-expand-md navbar-light justify-content-end justify-content-md-between w-100">
-                                            <button class="btn btn-icon navbar-toggler" type="button" data-toggle="collapse"
+                                            <button class="btn btn-icon navbar-toggler" type="button"
+                                                aria-controls="navbarSupportedContent"
+                                                aria-expanded="false" aria-label="Toggle navigation">
+                                                <i data-feather="align-justify" class="font-medium-5"></i>
+                                            </button>
+                                            {{-- <button class="btn btn-icon navbar-toggler" type="button" data-toggle="collapse"
                                                 data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                                                 aria-expanded="false" aria-label="Toggle navigation">
                                                 <i data-feather="align-justify" class="font-medium-5"></i>
@@ -123,10 +128,10 @@
 
                                                 </div>
                                             </div>
-                                            <!--/ collapse  -->
+                                            <!--/ collapse  --> --}}
                                         </nav>
                                         <!--/ navbar -->
-                                    </div> --}}
+                                    </div>
                                 </div>
                             </div>
                         </div>
