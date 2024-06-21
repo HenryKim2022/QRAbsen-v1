@@ -118,17 +118,13 @@
                                                 data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                                                 aria-expanded="false" aria-label="Toggle navigation">
                                                 <i data-feather="align-justify" class="font-medium-5"></i>
-                                            </button>
+                                            </button> --}}
 
                                             <!-- collapse  -->
                                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                                                <div
-                                                    class="profile-tabs d-flex justify-content-between flex-wrap mt-1 mt-md-0 p-2">
-
-
-                                                </div>
+                                                <div class="profile-tabs d-flex justify-content-between flex-wrap mt-1 mt-md-0 p-2"></div>
                                             </div>
-                                            <!--/ collapse  --> --}}
+                                            <!--/ collapse  -->
                                         </nav>
                                         <!--/ navbar -->
                                     </div>
