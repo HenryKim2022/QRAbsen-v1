@@ -27,9 +27,7 @@
         <div class="header-navbar-shadow"></div>
         <div class="content-wrapper">
             <div id="image-popup" class="modal-dialog-centered-cust col-8 col-sm-6 col-md-4 p-2">
-                <span class="close-btn btn btn-sm btn-text-primary rounded-pill btn-icon">
-                    <i class="text-secondary" data-feather="x"></i>
-                </span>
+                <span class="close-btn btn btn-sm btn-text-primary rounded-pill btn-icon"><i class="mdi mdi-close"></i></span>
                 <img src="" alt="Large Image" />
             </div>
 
@@ -216,8 +214,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('userPanels.absen.do.in') }}" method="POST"
-                            enctype="multipart/form-data">
+                        <form action="{{ route('userPanels.absen.do.in') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             {{-- $idKaryawanForAbsen  --}}
                             <!--  <img src="{ Session::get('data')['qr_code_link'] }}" alt="QR Code"> -->
@@ -232,10 +229,9 @@
                                                     <i data-feather="user"></i>
                                                 </span>
                                             </div>
-                                            <input class="form-control form-control-merge" id="absen-karyawan-id"
-                                                type="text" name="absen-karyawan-id" placeholder="············"
-                                                aria-describedby="absen-karyawan-id" tabindex="1"
-                                                value="{{ $data_karyawan_for_absen_in['data_karyawan']->id_karyawan ?? '' }}"
+                                            <input class="form-control form-control-merge" id="absen-karyawan-id" type="text"
+                                                name="absen-karyawan-id" placeholder="············" aria-describedby="absen-karyawan-id"
+                                                tabindex="1" value="{{ $data_karyawan_for_absen_in['data_karyawan']->id_karyawan ?? '' }}"
                                                 readonly />
                                         </div>
                                     </div>
@@ -249,10 +245,9 @@
                                                     <i data-feather="user"></i>
                                                 </span>
                                             </div>
-                                            <input class="form-control form-control-merge" id="absen-karyawan-name"
-                                                type="text" name="absen-karyawan-name" placeholder="············"
-                                                aria-describedby="absen-karyawan-name" tabindex="3"
-                                                value="{{ $data_karyawan_for_absen_in['data_karyawan']->na_karyawan ?? '' }}"
+                                            <input class="form-control form-control-merge" id="absen-karyawan-name" type="text"
+                                                name="absen-karyawan-name" placeholder="············" aria-describedby="absen-karyawan-name"
+                                                tabindex="3" value="{{ $data_karyawan_for_absen_in['data_karyawan']->na_karyawan ?? '' }}"
                                                 readonly />
                                         </div>
                                     </div>
@@ -273,17 +268,17 @@
                                 <div class="col-xl-12 col-md-12 col-12">
                                     <div class="form-group">
                                         <label class="form-label" for="absen-karyawan-reason">Reason</label>
-                                        <textarea class="form-control form-control-merge" id="absen-karyawan-reason" name="absen-karyawan-reason"
-                                            placeholder="e.g. Sakit diare parah" aria-describedby="absen-karyawan-reason" tabindex="4"></textarea>
+                                        <textarea class="form-control form-control-merge" id="absen-karyawan-reason"
+                                            name="absen-karyawan-reason" placeholder="e.g. Sakit diare parah"
+                                            aria-describedby="absen-karyawan-reason" tabindex="4"></textarea>
                                     </div>
                                 </div>
 
                                 <div class="col-xl-12 col-md-12 col-12">
                                     <div class="form-group">
                                         <label class="form-label" for="absen-karyawan-proof">Proof</label>
-                                        <input type="file" class="form-control form-control-merge"
-                                            id="absen-karyawan-proof" name="absen-karyawan-proof"
-                                            aria-describedby="absen-karyawan-proof" tabindex="5">
+                                        <input type="file" class="form-control form-control-merge" id="absen-karyawan-proof"
+                                            name="absen-karyawan-proof" aria-describedby="absen-karyawan-proof" tabindex="5">
                                     </div>
                                 </div>
 
@@ -311,10 +306,9 @@
     @endif
 
 
-    <!-- AbsenOut Modal -->
+        <!-- AbsenOut Modal -->
     @if ($data_karyawan_for_absen_out && $data_karyawan_for_absen_out['id_karyawan_for_absen'])
-        <div class="modal fade" id="qrCodeModal_Out" tabindex="-1" role="dialog"
-            aria-labelledby="qrCodeModalLabel">
+        <div class="modal fade" id="qrCodeModal_Out" tabindex="-1" role="dialog" aria-labelledby="qrCodeModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -324,8 +318,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('userPanels.absen.do.out') }}" method="POST"
-                            enctype="multipart/form-data">
+                        <form action="{{ route('userPanels.absen.do.out') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             {{-- $idKaryawanForAbsen  --}}
                             <!--  <img src="{ Session::get('data')['qr_code_link'] }}" alt="QR Code"> -->
@@ -340,10 +333,9 @@
                                                     <i data-feather="user"></i>
                                                 </span>
                                             </div>
-                                            <input class="form-control form-control-merge" id="absen-karyawan-id"
-                                                type="text" name="absen-karyawan-id" placeholder="e.g 00000000"
-                                                aria-describedby="absen-karyawan-id" tabindex="1"
-                                                value="{{ $data_karyawan_for_absen_out['data_karyawan']->id_karyawan ?? '' }}"
+                                            <input class="form-control form-control-merge" id="absen-karyawan-id" type="text"
+                                                name="absen-karyawan-id" placeholder="e.g 00000000" aria-describedby="absen-karyawan-id"
+                                                tabindex="1" value="{{ $data_karyawan_for_absen_out['data_karyawan']->id_karyawan ?? '' }}"
                                                 readonly />
                                         </div>
                                     </div>
@@ -357,10 +349,9 @@
                                                     <i data-feather="user"></i>
                                                 </span>
                                             </div>
-                                            <input class="form-control form-control-merge" id="absen-karyawan-name"
-                                                type="text" name="absen-karyawan-name" placeholder="e.g henry"
-                                                aria-describedby="absen-karyawan-name" tabindex="3"
-                                                value="{{ $data_karyawan_for_absen_out['data_karyawan']->na_karyawan ?? '' }}"
+                                            <input class="form-control form-control-merge" id="absen-karyawan-name" type="text"
+                                                name="absen-karyawan-name" placeholder="e.g henry" aria-describedby="absen-karyawan-name"
+                                                tabindex="3" value="{{ $data_karyawan_for_absen_out['data_karyawan']->na_karyawan ?? '' }}"
                                                 readonly />
                                         </div>
                                     </div>
@@ -381,17 +372,17 @@
                                 <div class="col-xl-12 col-md-12 col-12">
                                     <div class="form-group">
                                         <label class="form-label" for="absen-karyawan-reason">Reason</label>
-                                        <textarea class="form-control form-control-merge" id="absen-karyawan-reason" name="absen-karyawan-reason"
-                                            placeholder="e.g. Sakit diare parah" aria-describedby="absen-karyawan-reason" tabindex="4"></textarea>
+                                        <textarea class="form-control form-control-merge" id="absen-karyawan-reason"
+                                            name="absen-karyawan-reason" placeholder="e.g. Sakit diare parah"
+                                            aria-describedby="absen-karyawan-reason" tabindex="4"></textarea>
                                     </div>
                                 </div>
 
                                 <div class="col-xl-12 col-md-12 col-12">
                                     <div class="form-group">
                                         <label class="form-label" for="absen-karyawan-proof">Proof</label>
-                                        <input type="file" class="form-control form-control-merge"
-                                            id="absen-karyawan-proof" name="absen-karyawan-proof"
-                                            aria-describedby="absen-karyawan-proof" tabindex="5">
+                                        <input type="file" class="form-control form-control-merge" id="absen-karyawan-proof"
+                                            name="absen-karyawan-proof" aria-describedby="absen-karyawan-proof" tabindex="5">
                                     </div>
                                 </div>
 
