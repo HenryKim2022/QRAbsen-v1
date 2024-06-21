@@ -15,12 +15,12 @@ class tb_KaryawanSeeder extends Seeder
         $karyawanList = [
             [
                 'na_karyawan' => 'Seli',
-                'tlah_karyawan' => 'City',
-                'tglah_karyawan' => '1990-05-05',
+                'tlah_karyawan' => 'Pekalongan',
+                'tglah_karyawan' => '2003-05-05',
                 'agama_karyawan' => 'Islam',
                 'alamat_karyawan' => '123 Main St',
                 'notelp_karyawan' => '123456789',
-                'foto_karyawan' => null
+                'foto_karyawan' => '6675cb4dcd9ee.jpg'
             ],
             [
                 'na_karyawan' => 'Jane Smith',

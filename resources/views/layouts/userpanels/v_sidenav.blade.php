@@ -69,7 +69,7 @@
                     <ul class="menu-content">
                         <li><a class="d-flex align-items-center" href="{{ route('m.emp') }}"><i
                                     data-feather="circle"></i><span class="menu-item text-truncate"
-                                    data-i18n="Employee Manage">Employee Manage</span></a>
+                                    data-i18n="List Manage">List Manage</span></a>
                         </li>
                         <li><a class="d-flex align-items-center" href="{{ route('m.emp.roles') }}"><i
                                     data-feather="circle"></i><span class="menu-item text-truncate"
@@ -83,7 +83,7 @@
                     <ul class="menu-content">
                         <li><a class="d-flex align-items-center" href="{{ route('m.absen') }}"><i
                                     data-feather="circle"></i><span class="menu-item text-truncate"
-                                    data-i18n="Manage">Manage</span></a>
+                                    data-i18n="Info Manage">Info Manage</span></a>
                         </li>
                     </ul>
                 </li>
