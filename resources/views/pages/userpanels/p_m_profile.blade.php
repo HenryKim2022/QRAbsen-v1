@@ -104,7 +104,7 @@
                                         </div>
                                     </div>
 
-                                    <!-- tabs pill -->
+                                    {{-- <!-- tabs pill -->
                                     <div class="profile-header-nav">
                                         <!-- navbar -->
                                         <nav
@@ -126,7 +126,7 @@
                                             <!--/ collapse  -->
                                         </nav>
                                         <!--/ navbar -->
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>
