@@ -116,7 +116,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label" for="register-email">Email</label>
-                                        <input class="form-control" id="register-email" type="text" name="register-email" placeholder="john@example.com" aria-describedby="register-email" tabindex="2"
+                                        <input class="form-control" id="register-email" type="text" name="register-email" placeholder="youremail@example.com" aria-describedby="register-email" tabindex="2"
                                         value="{{ old('register-email', $inputs['register-email'] ?? '') }}" />
                                     </div>
                                     <div class="form-group">

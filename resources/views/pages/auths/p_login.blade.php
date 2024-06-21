@@ -101,7 +101,7 @@
                                     @csrf
                                     <div class="form-group">
                                         <label class="form-label" for="username-email">Email</label>
-                                        <input class="form-control" id="username-email" type="text" name="username-email" placeholder="john@example.com" aria-describedby="username-email" autofocus="" tabindex="1"
+                                        <input class="form-control" id="username-email" type="text" name="username-email" placeholder="youremail@example.com" aria-describedby="username-email" autofocus="" tabindex="1"
                                         value="{{ old('username-email', $inputs['username-email'] ?? '') }}" />
                                     </div>
                                     <div class="form-group">
