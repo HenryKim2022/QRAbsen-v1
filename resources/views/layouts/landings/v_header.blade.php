@@ -72,7 +72,7 @@
             position: fixed;
             padding: 10px;
             background-clip: padding-box;
-            background-color: #ffffff;
+            background-color: #30334e;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             border: 1px solid rgba(20, 21, 33, 0.175);
             border-radius: 0.625rem;
@@ -89,13 +89,6 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             border: 1px solid rgba(20, 21, 33, 0.175);
         }
-        .light-layout #image-popup {
-            background-color: #30334e;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(20, 21, 33, 0.175);
-
-        }
-
 
         #image-popup img {
             width: 100%;
@@ -103,8 +96,8 @@
 
         #image-popup .close-btn {
             position: absolute;
-            top: 1rem;
-            right: 1.6rem;
+            top: 0.15rem;
+            right: 0.15rem;
             cursor: pointer;
             color: #fff;
             background-color: rgba(248, 23, 23, 0.267);
