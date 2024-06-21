@@ -87,14 +87,23 @@
         #image-popup {
             display: none;
             position: fixed;
-            background-color: #30334e;
             padding: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             background-clip: padding-box;
-            border: 1px solid rgba(20, 21, 33, 0.175);
             border-radius: 0.625rem;
             outline: 0;
             z-index: 9999;
+        }
+        .dark-layout #image-popup {
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(20, 21, 33, 0.175);
+
+        }
+        .light-layout #image-popup {
+            background-color: #30334e;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(20, 21, 33, 0.175);
+
         }
 
         #image-popup img {
