@@ -68,10 +68,107 @@
                 <!-- Company Landing Image Card -->
                 <div class="col-lg-4 col-12 h-100">
                     <div class="row">
-                        <div class="card card-company-table bg-transparent">
+                        {{-- <div class="card card-company-table bg-transparent">
                             <div class="card-body p-0">
                                 <img class="img-fluid rounded-0" src="{{ 'public/storage/landings/img/landing_image_1.png' }}"
                                     alt="">
+                            </div>
+                        </div> --}}
+                        <div class="card card-company-table bg-transparent">
+                            <div class="card-body p-0">
+                                <img class="card-img-top" src="{{ 'public/storage/landings/img/landing_image_2.png' }}"
+                                    alt="AppMain Image" />
+                                <style>
+                                    .AppMain-img-container {
+                                        position: absolute;
+                                        color: #30334e;
+                                        bottom: 5.6rem;
+                                        right: 1.04rem;
+                                        z-index: 2;
+                                        top: -12.04rem;
+                                    }
+
+                                    .fw-600 {
+                                        font-weight: 600;
+                                    }
+
+                                    .fw-250 {
+                                        font-weight: 250;
+                                    }
+
+                                    .text-end {
+                                        text-align: end;
+                                    }
+
+                                    @media (max-width: 767px) {
+                                        /* Styles for smartphone */
+                                        .AppMain-img-container {
+                                            right: 2.04rem;
+                                        }
+                                    }
+
+
+                                    @media (min-width: 768px) {
+                                        /* Styles for desktops */
+                                        .AppMain-img-container {
+                                            top: -11.04rem;
+                                            right: 1.04rem;
+                                        }
+                                    }
+                                </style>
+                                <div class="position-relative">
+                                    <!-- app picture -->
+                                    <div class="AppMain-img-container d-flex align-items-center">
+                                        <!-- app title -->
+                                        <div class="AppMain-title mr-1">
+                                            <h5 class="fw-600 mt-2 mb-0 text-end" style="color: #30334e">
+                                                <a>Employee Attende</a>
+                                            </h5>
+                                            <p class="font-small-1 fw-600 font-italic text-end">"Do not late !"</p>
+                                        </div>
+                                        <!-- app img -->
+                                        <div class="AppMain-img">
+                                            <svg viewBox="0 0 139 95" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                                xmlns:xlink="http://www.w3.org/1999/xlink" height="24">
+                                                <defs>
+                                                    <linearGradient id="linearGradient-1" x1="100%" y1="10.5120544%"
+                                                        x2="50%" y2="89.4879456%">
+                                                        <stop stop-color="#000000" offset="0%"></stop>
+                                                        <stop stop-color="#FFFFFF" offset="100%"></stop>
+                                                    </linearGradient>
+                                                    <linearGradient id="linearGradient-2" x1="64.0437835%" y1="46.3276743%"
+                                                        x2="37.373316%" y2="100%">
+                                                        <stop stop-color="#EEEEEE" stop-opacity="0" offset="0%"></stop>
+                                                        <stop stop-color="#FFFFFF" offset="100%"></stop>
+                                                    </linearGradient>
+                                                </defs>
+                                                <g id="Page-1" stroke="none" stroke-width="1" fill="none"
+                                                    fill-rule="evenodd">
+                                                    <g id="Artboard" transform="translate(-400.000000, -178.000000)">
+                                                        <g id="Group" transform="translate(400.000000, 178.000000)">
+                                                            <path class="text-primary" id="Path"
+                                                                d="M-5.68434189e-14,2.84217094e-14 L39.1816085,2.84217094e-14 L69.3453773,32.2519224 L101.428699,2.84217094e-14 L138.784583,2.84217094e-14 L138.784199,29.8015838 C137.958931,37.3510206 135.784352,42.5567762 132.260463,45.4188507 C128.736573,48.2809251 112.33867,64.5239941 83.0667527,94.1480575 L56.2750821,94.1480575 L6.71554594,44.4188507 C2.46876683,39.9813776 0.345377275,35.1089553 0.345377275,29.8015838 C0.345377275,24.4942122 0.230251516,14.560351 -5.68434189e-14,2.84217094e-14 Z"
+                                                                style="fill:currentColor"></path>
+                                                            <path id="Path1"
+                                                                d="M69.3453773,32.2519224 L101.428699,1.42108547e-14 L138.784583,1.42108547e-14 L138.784199,29.8015838 C137.958931,37.3510206 135.784352,42.5567762 132.260463,45.4188507 C128.736573,48.2809251 112.33867,64.5239941 83.0667527,94.1480575 L56.2750821,94.1480575 L32.8435758,70.5039241 L69.3453773,32.2519224 Z"
+                                                                fill="url(#linearGradient-1)" opacity="0.2"></path>
+                                                            <polygon id="Path-2" fill="#000000" opacity="0.049999997"
+                                                                points="69.3922914 32.4202615 32.8435758 70.5039241 54.0490008 16.1851325">
+                                                            </polygon>
+                                                            <polygon id="Path-21" fill="#000000" opacity="0.099999994"
+                                                                points="69.3922914 32.4202615 32.8435758 70.5039241 58.3683556 20.7402338">
+                                                            </polygon>
+                                                            <polygon id="Path-3" fill="url(#linearGradient-2)"
+                                                                opacity="0.099999994"
+                                                                points="101.428699 0 83.0667527 94.1480575 130.378721 47.0740288">
+                                                            </polygon>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <!-- Countdown Card -->
@@ -208,17 +305,23 @@
 
 
     <script>
-        // Set the current time and target time
+        // Set the current time, target time, and stop time
         const currentTime = new Date();
         const targetDate = new Date();
-        targetDate.setHours(17, 1, 0, 0); // Set the target time to 5:01 PM
+        targetDate.setHours(17, 01, 0, 0); // Set the target time to 17:01 PM
+        const stopTime = new Date();
+        stopTime.setHours(06, 00, 0, 0); // Set the stop time to 06:00 AM
 
-        // If the target time has already passed for today, move it to tomorrow
+        // If the target time or stop time has already passed for today, move them to tomorrow
         if (targetDate <= currentTime) {
             targetDate.setDate(targetDate.getDate() + 1);
         }
-        // Start the countdown timer with the provided targetDate value
-        function startCountdown(targetDate) {
+        if (stopTime <= currentTime) {
+            stopTime.setDate(stopTime.getDate() + 1);
+        }
+
+        // Start the countdown timer with the provided targetDate and stopTime values
+        function startCountdown(targetDate, stopTime) {
             // Update the countdown every second
             const countdown = setInterval(() => {
                 const now = new Date().getTime();
@@ -236,20 +339,22 @@
                 updateTimer('.countdown-timer .minutes', minutes);
                 updateTimer('.countdown-timer .seconds', seconds);
 
-                // Stop the countdown when the target date is reached
-                if (timeRemaining < 0) {
+                // Stop the countdown when the stop time is reached
+                if (now >= stopTime) {
                     clearInterval(countdown);
-                    // Display any desired message when the countdown ends
-                    document.querySelector('.countdown-timer').textContent = "Countdown Finished!";
+                    // Display any desired message when the countdown stops
+                    document.querySelector('.countdown-timer').textContent = "Countdown Stopped!";
                 }
             }, 1000);
         }
+
         // Helper function to update individual timer digits
         function updateTimer(selector, value) {
             document.querySelector(selector + ' .value').textContent = value.toString().padStart(2, '0');
         }
-        // Start the countdown with the targetDate value
-        startCountdown(targetDate);
+
+        // Start the countdown with the targetDate and stopTime values
+        startCountdown(targetDate, stopTime);
     </script>
 
 
