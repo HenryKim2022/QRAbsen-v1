@@ -54,13 +54,10 @@ Route::middleware('auth')->group(function () {
 });
 
 
-// Tutorial Laravel 11:
-Route::middleware(['auth'])->group(function () {
+
+Route::middleware(['auth'])->group(function () {    // Note: Separated group coz somewhat wont work if using direct controller path (only /my-profile).
     Route::get('/my-profile', [MyProfileController::class, 'index'])->name('userPanels.myprofile');
 });
-
-
-
 Route::middleware('auth')->group(function () {
     // Route::get('/my-profile', [MyProfileController::class, 'index'])->name('userPanels.myprofile');
     // Route::post('/my-profile', [MyProfileController::class, 'index'])->name('userPanels.myprofile');
@@ -71,6 +68,34 @@ Route::middleware('auth')->group(function () {
     Route::get('/my-profile/load-biodata', [MyProfileController::class, 'profile_load_biodata'])->name('userPanels.biodata.load');
     Route::get('/my-profile/load-accdata', [MyProfileController::class, 'profile_load_accdata'])->name('userPanels.accdata.load');
 });
+
+
+
+
+
+Route::middleware('auth')->group(function () {
+    Route::get('/m-emp', [EmployeeController::class, 'index'])->name('m.emp');
+    Route::post('/m-emp/add', [EmployeeController::class, 'add_emp'])->name('m.emp.add');
+    Route::post('/m-emp/edit', [EmployeeController::class, 'edit_emp'])->name('m.emp.edit');
+    Route::post('/m-emp/delete', [EmployeeController::class, 'delete_emp'])->name('m.emp.del');
+
+    Route::get('/m-emp/roles', [OfficeRoleController::class, 'index'])->name('m.emp.roles');
+    Route::post('/m-emp/roles/add', [OfficeRoleController::class, 'add_emp_roles'])->name('m.emp.roles.add');
+    Route::post('/m-emp/roles/edit', [OfficeRoleController::class, 'edit_emp_roles'])->name('m.emp.roles.edit');
+    Route::post('/m-emp/roles/delete', [OfficeRoleController::class, 'delete_emp_roles'])->name('m.emp.roles.del');
+});
+Route::middleware('auth')->group(function () {
+    Route::get('/m-absen', [AbsenController::class, 'index'])->name('m.absen');
+    Route::post('/m-absen/add', [AbsenController::class, 'add_absen'])->name('m.absen.add');
+    Route::post('/m-absen/edit', [AbsenController::class, 'edit_absen'])->name('m.absen.edit');
+    Route::post('/m-absen/delete', [AbsenController::class, 'delete_absen'])->name('m.absen.del');
+});
+
+
+
+
+
+
 
 
 

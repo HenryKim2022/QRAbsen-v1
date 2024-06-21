@@ -67,13 +67,13 @@
                     <a class="d-flex align-items-center" href="#"><i data-feather="users"></i><span
                             class="menu-title text-truncate" data-i18n="Employee">Employee</span></a>
                     <ul class="menu-content">
-                        <li><a class="d-flex align-items-center" href="app-ecommerce-shop.html"><i
+                        <li><a class="d-flex align-items-center" href="{{ route('m.emp') }}"><i
                                     data-feather="circle"></i><span class="menu-item text-truncate"
-                                    data-i18n="Shop">Employee List</span></a>
+                                    data-i18n="Employee Manage">Employee Manage</span></a>
                         </li>
-                        <li><a class="d-flex align-items-center" href="app-ecommerce-details.html"><i
+                        <li><a class="d-flex align-items-center" href="{{ route('m.emp.roles') }}"><i
                                     data-feather="circle"></i><span class="menu-item text-truncate"
-                                    data-i18n="Details">Employee Roles</span></a>
+                                    data-i18n="Role Manage">Role Manage</span></a>
                         </li>
                     </ul>
                 </li>
@@ -81,13 +81,9 @@
                     <a class="d-flex align-items-center" href="#"><i data-feather="book-open"></i><span
                             class="menu-title text-truncate" data-i18n="Employee">Attendance</span></a>
                     <ul class="menu-content">
-                        <li><a class="d-flex align-items-center" href="app-ecommerce-shop.html"><i
+                        <li><a class="d-flex align-items-center" href="{{ route('m.absen') }}"><i
                                     data-feather="circle"></i><span class="menu-item text-truncate"
-                                    data-i18n="List">List</span></a>
-                        </li>
-                        <li><a class="d-flex align-items-center" href="app-ecommerce-details.html"><i
-                                    data-feather="circle"></i><span class="menu-item text-truncate"
-                                    data-i18n="Informations">Informations</span></a>
+                                    data-i18n="Manage">Manage</span></a>
                         </li>
                     </ul>
                 </li>
