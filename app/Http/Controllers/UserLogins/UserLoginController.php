@@ -18,7 +18,7 @@ class UserLoginController extends Controller
 {
     //
     public function index(Request $request){
-        $process = $this->setPageSession("Login Page", "login");
+        $process = $this->setPageSession("Manage Users", "m-user");
         if ($process) {
             $loadDaftarLoginFromDB = [];
             $loadDaftarLoginFromDB = DaftarLogin_Model::with(['karyawan'])->withoutTrashed()->get();
