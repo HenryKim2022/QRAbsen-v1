@@ -1,63 +1,64 @@
-
- <div class="modal fade text-left modal-success" id="add_userModal" data-bs-backdrop="static" tabindex="-1" role="dialog"
+ <div class="modal fade text-left modal-success" id="edit_userModal" data-bs-backdrop="static" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel113" aria-hidden="true">
      <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable" role="document">
          <div class="modal-content">
              <div class="modal-header">
-                 <h5 class="modal-title" id="myModalLabel113">Add New User Informations</h5>
+                 <h5 class="modal-title" id="myModalLabel113">Edit User Informations</h5>
                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                      <span aria-hidden="true">&times;</span>
                  </button>
              </div>
              <div class="modal-body">
-                 <form class="row g-2 needs-validation mt-1" method="POST" action="{{ route('m.user.add') }}"
+                 <form class="row g-2 needs-validation mt-1" method="POST" action="{{ route('m.user.add') }}" id="edit_userModalFORM"
                      novalidate>
                      @csrf
+                     <input type="hidden" id="user_id" name="user_id" value="" />
                      <div class="col-12 col-sm-6">
-                        <div class="form-group mb-0">
-                            <label>Employee</label>
-                            <select class="select2 form-control form-control-lg" name="modalAddEmployee" id="modalAddEmployee">
-                                <option value="">Select Employee</option>
-                                @foreach($employee_list as $employee)
-                                    <option value="{{ $employee->id_karyawan }}">
-                                        {{ $employee->na_karyawan }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                     <div class="col-12 col-md-6 mb-0">
-                         <div class="form-floating form-floating-outline">
-                             <label for="modalAddUsername">Username</label>
-                             <input type="text" id="modalAddUsername" name="modalAddUsername" class="form-control"
+                         <div class="form-group mb-0">
+                             <label>Employee</label>
+                             <select class="select2 form-control form-control-lg" name="modalEditEmployee" id="modalEditEmployee">
+                                 <option value=""
+                                     {{ !$authenticated_user_data->agama_karyawan ? 'selected' : '' }}>
+                                     Select employee</option>
+                             </select>
+                         </div>
+                     </div>
+                     <div class="col-12 col-md-6">
+                         <div class="form-floating form-floating-outline mb-0">
+                             <label for="modalEditUsername">Username</label>
+                             <input type="text" id="modalEditUsername" name="modalEditUsername" class="form-control"
                                  placeholder="Username" required />
                          </div>
                      </div>
                      <div class="col-12 col-md-12">
                          <div class="form-floating form-floating-outline">
-                             <label for="modalAddEmail">Email</label>
-                             <input type="email" id="modalAddEmail" name="modalAddEmail" class="form-control"
+                             <label for="modalEditEmail">Email</label>
+                             <input type="email" id="modalEditEmail" name="modalEditEmail" class="form-control"
                                  placeholder="Email" required />
                          </div>
                      </div>
                      <div class="col-12 col-sm-6">
                          <div class="form-group">
                              <label>User Type</label>
-                             <select class="select2 form-control form-control-lg" name="modalAddUserType" id="modalAddUserType" aria-autocomplete="none">
-                                 <option value="">
+                             <select class="select2 form-control form-control-lg" name="modalEditUserType" id="modalEditUserType">
+                                 <option value=""
+                                     {{ !$authenticated_user_data->daftar_login->type ? 'selected' : '' }}>
                                      Select UserType</option>
-                                 <option value="1">
+                                 <option value="1"
+                                     {{ $authenticated_user_data->daftar_login->type == 'Islam' ? 'selected' : '' }}>
                                      Admin</option>
-                                 <option value="2" selected>
+                                 <option value="2"
+                                     {{ $authenticated_user_data->daftar_login->type == 'Kristen' ? 'selected' : '' }}>
                                      Karyawan (incl: CEO, CFO, etc)</option>
+
                              </select>
                          </div>
                      </div>
                      <div class="col-12 col-sm-6">
                          <div class="form-group">
-                             <label for="modalAddPassword">Password</label>
+                             <label for="modalEditPassword">Password</label>
                              <div class="input-group form-password-toggle input-group-merge">
-                                 <input type="password" class="form-control" id="modalAddPassword" name="modalAddPassword"
+                                 <input type="password" class="form-control" id="modalEditPassword" name="modalEditPassword"
                                      placeholder="Password" required />
                                  <div class="input-group-append">
                                      <div class="input-group-text cursor-pointer toggle-password">
@@ -67,12 +68,21 @@
                              </div>
                          </div>
                      </div>
-                     <div class="modal-footer w-100 px-0 py-1 mt-1">
+
+                     <div class="col-12 mb-3 mt-2">
+                         <div class="form-check">
+                             <input type="checkbox" class="form-check-input" id="bsvalidationcheckbox1"
+                                 name="bsvalidationcheckbox1" checked="false" required />
+                             <label class="form-check-label" for="bsvalidationcheckbox1">Proceed to save</label>
+                             <div class="feedback text-muted">You must agree before saving.</div>
+                         </div>
+                     </div>
+                     <div class="modal-footer w-100 px-0 py-1">
                          <div class="col-12 text-center">
                              <div class="d-flex flex-col justify-content-end">
-                                 <button class="modal-btn btn btn-primary" data-dismiss="modal"
+                                 <button class="modal-btn btn btn-primary" data-dismiss="modal" id="confirmCancel"
                                      type="button">Cancel</button>
-                                 <button class="modal-btn btn btn-success ml-1" type="submit">Save</button>
+                                 <button class="modal-btn btn btn-success ml-1" id="confirmSave" {{-- type="submit" --}}>Save</button>
                              </div>
                          </div>
                      </div>

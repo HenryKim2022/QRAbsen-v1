@@ -14,7 +14,7 @@
 
 
 <!DOCTYPE html>
-<html class="loading dark-layout" lang="en" data-layout="dark-layout" data-textdirection="ltr">
+<html class="loading" lang="en" data-layout="dark-layout" data-textdirection="ltr">
 <!-- BEGIN: Head--> @include('layouts.userpanels.v_header') <!-- END: Head-->
 
 <body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click"
@@ -50,8 +50,9 @@
     <!-- BEGIN: AboutUSModal--> @include('modals.userpanels.v_aboutUsModal') <!-- END: AboutUSModal-->
     <!-- BEGIN: ContactUSModal--> @include('modals.userpanels.v_contactUsModal') <!-- END: ContactUSModal-->
 
-    <!-- BEGIN: AddUserModal--> @include('modals.userpanels.m_daftarlogin.v_add_userModal') <!-- END: AddUserModal-->
-    <!-- BEGIN: ResetUserModal--> @include('modals.userpanels.m_daftarlogin.v_reset_userModal') <!-- END: ResetUserModal-->
+
+
+
 
 
     {{-- ////////////////////////////////////////////////////////////////////// TOAST //////////////////////////////////////////////////////////////////////  --}}

@@ -95,6 +95,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/m-user/add', [UserLoginController::class, 'add_user'])->name('m.user.add');
     Route::post('/m-user/edit', [UserLoginController::class, 'edit_user'])->name('m.user.edit');
     Route::post('/m-user/delete', [UserLoginController::class, 'delete_user'])->name('m.user.del');
+    Route::post('/m-user/emp/load', [UserLoginController::class, 'get_user'])->name('m.user.getuser');
 });
 
 

@@ -5,7 +5,7 @@
 @endphp
 
 <!DOCTYPE html>
-<html class="loading dark-layout" lang="en" data-layout="dark-layout" data-textdirection="ltr">
+<html class="loading" lang="en" data-layout="dark-layout" data-textdirection="ltr">
 <!-- BEGIN: Head--> @include('layouts.landings.v_header') <!-- END: Head-->
 
 

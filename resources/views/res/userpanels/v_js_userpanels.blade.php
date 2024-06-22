@@ -24,8 +24,7 @@
 <script src="{{ asset('public/vuexy/app-assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('public/vuexy/app-assets/vendors/js/tables/datatable/dataTables.responsive.min.js') }}"></script>
 <script src="{{ asset('public/vuexy/app-assets/vendors/js/tables/datatable/responsive.bootstrap4.js') }}"></script>
-<script src="{{ asset('public/vuexy/app-assets/vendors/js/tables/datatable/datatables.checkboxes.min.js') }}">
-</script>
+<script src="{{ asset('public/vuexy/app-assets/vendors/js/tables/datatable/datatables.checkboxes.min.js') }}"></script>
 <script src="{{ asset('public/vuexy/app-assets/vendors/js/tables/datatable/datatables.buttons.min.js') }}"></script>
 <script src="{{ asset('public/vuexy/app-assets/vendors/js/tables/datatable/jszip.min.js') }}"></script>
 <script src="{{ asset('public/vuexy/app-assets/vendors/js/tables/datatable/pdfmake.min.js') }}"></script>
@@ -136,7 +135,11 @@
 <script>
     function openModal(modalId) {
         var modal = document.querySelector(modalId);
-        var bootstrapModal = new bootstrap.Modal(modal);
-        bootstrapModal.show();
+        $(document).ready(function() {
+            var bootstrapModal = new bootstrap.Modal(modal);
+            bootstrapModal.show();
+        });
     }
 </script>
+
+

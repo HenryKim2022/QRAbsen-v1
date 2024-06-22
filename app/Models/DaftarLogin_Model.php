@@ -40,6 +40,13 @@ class DaftarLogin_Model extends Authenticatable
         );
     }
 
+    public function convertUserTypeBack($type2Convert)
+    {
+        $typeValueList = ['Guest', 'Admin', 'Karyawan'];
+        $typeIndex = array_search($type2Convert, $typeValueList);
+        $convertedUserType = $typeIndex !== false ? $typeIndex : null;
+        return $convertedUserType;
+    }
 
     public function karyawan()
     {
