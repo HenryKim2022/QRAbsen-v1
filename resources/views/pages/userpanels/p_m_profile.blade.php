@@ -221,11 +221,13 @@
                                                                 <td><strong>Office Role</strong></td>
                                                                 <td class="pl-2">: </td>
                                                                 <td>
-                                                                    @if ($authenticated_user_data->jabatan->count() > 0)
-                                                                        @foreach ($authenticated_user_data->jabatan as $role)
-                                                                            {{ $role->na_jabatan }}@if (!$loop->last)
-                                                                                ,
-                                                                            @endif
+                                                                    @php
+                                                                        $rolesCount = $authenticated_user_data->jabatan->count();
+                                                                    @endphp
+
+                                                                    @if ($rolesCount > 0)
+                                                                        @foreach ($authenticated_user_data->jabatan as $index => $role)
+                                                                            {{ $role->na_jabatan }}@if ($index < $rolesCount - 1),@endif
                                                                         @endforeach
                                                                     @else
                                                                         N/A
