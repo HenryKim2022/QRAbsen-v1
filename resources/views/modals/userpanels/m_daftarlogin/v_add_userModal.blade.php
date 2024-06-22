@@ -89,22 +89,3 @@
 
 
 
- <script>
-     $(document).ready(function() {
-         $('.toggle-password').click(function() {
-             var passwordInput = $('#Password');
-             var passwordFieldType = passwordInput.attr('type');
-             var passwordIcon = $('.password-icon');
-
-             if (passwordFieldType === 'password') {
-                 passwordInput.attr('type', 'text');
-                 passwordIcon.attr('data-feather', 'eye-off');
-             } else {
-                 passwordInput.attr('type', 'password');
-                 passwordIcon.attr('data-feather', 'eye');
-             }
-
-             feather.replace(); // Refresh the Feather icons after changing the icon attribute
-         });
-     });
- </script>
