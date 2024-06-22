@@ -14,7 +14,7 @@
 
 
 <!DOCTYPE html>
-<html class="loading" lang="en" data-layout="dark-layout" data-textdirection="ltr">
+<html class="loading dark-layout" lang="en" data-layout="dark-layout" data-textdirection="ltr">
 <!-- BEGIN: Head--> @include('layouts.userpanels.v_header') <!-- END: Head-->
 
 <body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click"

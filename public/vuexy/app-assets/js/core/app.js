@@ -966,7 +966,7 @@ window.colors = {
     });
 
     var currentLocalStorageLayout = localStorage.getItem('layout') || 'dark-layout';
-    setLayout(currentLocalStorageLayout);       /// TO LINK THEME INTO DB
+    setLayout(currentLocalStorageLayout);                                                       /// TO LINK THEME INTO DB
     function setLayout(layout) {
         var navLinkStyle = $('.nav-link-style'),
             mainMenu = $('.main-menu'),
