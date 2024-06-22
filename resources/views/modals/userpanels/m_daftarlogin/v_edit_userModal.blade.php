@@ -70,13 +70,12 @@
                      </div>
 
                      <div class="col-12 mb-3 mt-2">
-                         <div class="form-check">
-                             <input type="checkbox" class="form-check-input" id="bsvalidationcheckbox1"
-                                 name="bsvalidationcheckbox1" checked="false" required />
-                             <label class="form-check-label" for="bsvalidationcheckbox1">Proceed to save</label>
-                             <div class="feedback text-muted">You must agree before saving.</div>
-                         </div>
-                     </div>
+                        <div class="form-check">
+                          <input type="checkbox" class="form-check-input" id="bsvalidationcheckbox1" name="bsvalidationcheckbox1" data-default-checked="false" required />
+                          <label class="form-check-label" for="bsvalidationcheckbox1">Proceed to save</label>
+                          <div class="feedback text-muted">You must agree before saving.</div>
+                        </div>
+                      </div>
                      <div class="modal-footer w-100 px-0 py-1">
                          <div class="col-12 text-center">
                              <div class="d-flex flex-col justify-content-end">
@@ -98,23 +97,3 @@
  </div>
 
 
-
- <script>
-     $(document).ready(function() {
-         $('.toggle-password').click(function() {
-             var passwordInput = $('#Password');
-             var passwordFieldType = passwordInput.attr('type');
-             var passwordIcon = $('.password-icon');
-
-             if (passwordFieldType === 'password') {
-                 passwordInput.attr('type', 'text');
-                 passwordIcon.attr('data-feather', 'eye-off');
-             } else {
-                 passwordInput.attr('type', 'password');
-                 passwordIcon.attr('data-feather', 'eye');
-             }
-
-             feather.replace(); // Refresh the Feather icons after changing the icon attribute
-         });
-     });
- </script>
