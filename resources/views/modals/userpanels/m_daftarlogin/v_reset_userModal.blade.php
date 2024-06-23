@@ -9,7 +9,7 @@
                  </button>
              </div>
              <div class="modal-body">
-                 <form class="row g-2 needs-validation mt-1" method="POST" action="{{ route('m.user.del') }}" novalidate>
+                 <form class="row g-2 needs-validation mt-1" method="POST" action="{{ route('m.user.reset') }}" novalidate>
                      @csrf
                      <div class="container" style="text-align: justify;">
                          <h6 class="text-center">

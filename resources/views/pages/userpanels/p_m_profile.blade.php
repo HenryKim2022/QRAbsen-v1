@@ -91,10 +91,7 @@
                                                 </h2>
                                                 @php
                                                     $roles = [];
-                                                    $role1 =
-                                                        $authenticated_user_data->daftar_login->type == 'Admin'
-                                                            ? 'WebSite ' . $authenticated_user_data->daftar_login->type
-                                                            : $authenticated_user_data->daftar_login->type;
+                                                    $role1 = $authenticated_user_data->daftar_login ? ($authenticated_user_data->daftar_login->type == 'Admin' ? 'WebSite ' . $authenticated_user_data->daftar_login->type : $authenticated_user_data->daftar_login->type) : null;
                                                     $role2 = $authenticated_user_data->jabatan;
 
                                                     // Add the first role to the roles array
@@ -200,7 +197,10 @@
                                                             <tr>
                                                                 <td><strong>UserID</strong></td>
                                                                 <td class="pl-2">: </td>
-                                                                <td>{{ $authenticated_user_data->daftar_login->user_id }}</td>
+                                                                <td>
+                                                                    {{-- {{ $authenticated_user_data->daftar_login->user_id }} --}}
+                                                                    {{ $authenticated_user_data->daftar_login ? $authenticated_user_data->daftar_login->user_id : ($authenticated_user_data->daftar_login_4get ? $authenticated_user_data->daftar_login_4get->user_id : '') }}
+                                                                </td>
                                                             </tr>
                                                             <tr>
                                                                 <td><strong>EmployeeID</strong></td>
@@ -210,12 +210,18 @@
                                                             <tr>
                                                                 <td><strong>Username</strong></td>
                                                                 <td class="pl-2">: </td>
-                                                                <td>{{ $authenticated_user_data->daftar_login->username }}</td>
+                                                                <td>
+                                                                    {{-- {{ $authenticated_user_data->daftar_login->username }} --}}
+                                                                    {{ $authenticated_user_data->daftar_login ? $authenticated_user_data->daftar_login->username : ($authenticated_user_data->daftar_login_4get ? $authenticated_user_data->daftar_login_4get->username : '') }}
+                                                                </td>
                                                             </tr>
                                                             <tr>
                                                                 <td><strong>Name</strong></td>
                                                                 <td class="pl-2">: </td>
                                                                 <td>{{ $authenticated_user_data->na_karyawan }}</td>
+                                                                {{-- <td>
+                                                                    {{ $authenticated_user_data->daftar_login ? $authenticated_user_data->daftar_login->na_karyawan : ($authenticated_user_data->daftar_login_4get ? $authenticated_user_data->daftar_login_4get->na_karyawan : '') }}
+                                                                </td> --}}
                                                             </tr>
                                                             <tr>
                                                                 <td><strong>Office Role</strong></td>
@@ -237,7 +243,10 @@
                                                             <tr>
                                                                 <td><strong>Email</strong></td>
                                                                 <td class="pl-2">: </td>
-                                                                <td>{{ $authenticated_user_data->daftar_login->email }}</td>
+                                                                {{-- <td>{{ $authenticated_user_data->daftar_login->email }}</td> --}}
+                                                                <td>
+                                                                    {{ $authenticated_user_data->daftar_login ? $authenticated_user_data->daftar_login->email : ($authenticated_user_data->daftar_login_4get ? $authenticated_user_data->daftar_login_4get->email : '') }}
+                                                                </td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -335,10 +344,13 @@
                                                                 <input type="hidden" class="form-control" id="id_karyawan"
                                                                 name="id_karyawan" placeholder="ID"
                                                                 value="{{ $authenticated_user_data->id_karyawan ?: 'My Girlfriend :)' }}" />
+                                                                {{-- value="{{ $authenticated_user_data->daftar_login ? ($authenticated_user_data->daftar_login->id_karyawan == null ? $authenticated_user_data->daftar_login->id_karyawan : $authenticated_user_data->daftar_login->id_karyawan) : null }}" /> --}}
+
                                                                 <label for="account-name">Name</label>
                                                                 <input type="text" class="form-control" id="account-name"
                                                                     name="account-name" placeholder="Name"
                                                                     value="{{ $authenticated_user_data->na_karyawan ?: 'My Girlfriend :)' }}" />
+                                                                    {{-- value="{{ $authenticated_user_data->daftar_login ? ($authenticated_user_data->daftar_login->na_karyawan == null ? $authenticated_user_data->daftar_login->na_karyawan : $authenticated_user_data->daftar_login->na_karyawan) : null }}" /> --}}
                                                             </div>
                                                         </div>
                                                         <div class="col-12 col-sm-6">
@@ -362,23 +374,26 @@
                                                                 <label>Religion</label>
                                                                 <select class="select2 form-control form-control-lg"
                                                                     name="religion" id="religion">
+                                                                    @php
+                                                                        $religion = $authenticated_user_data->agama_karyawan;
+                                                                    @endphp
                                                                     <option value=""
-                                                                        {{ !$authenticated_user_data->agama_karyawan ? 'selected' : '' }}>
+                                                                        {{ !$religion ? 'selected' : '' }}>
                                                                         Select religion</option>
                                                                     <option value="Islam"
-                                                                        {{ $authenticated_user_data->agama_karyawan == 'Islam' ? 'selected' : '' }}>
+                                                                        {{ $religion == 'Islam' ? 'selected' : '' }}>
                                                                         Islam</option>
                                                                     <option value="Kristen"
-                                                                        {{ $authenticated_user_data->agama_karyawan == 'Kristen' ? 'selected' : '' }}>
+                                                                        {{ $religion == 'Kristen' ? 'selected' : '' }}>
                                                                         Kristen</option>
                                                                     <option value="Hindu"
-                                                                        {{ $authenticated_user_data->agama_karyawan == 'Hindu' ? 'selected' : '' }}>
+                                                                        {{ $religion == 'Hindu' ? 'selected' : '' }}>
                                                                         Hindu</option>
                                                                     <option value="Buddha"
-                                                                        {{ $authenticated_user_data->agama_karyawan == 'Buddha' ? 'selected' : '' }}>
+                                                                        {{ $religion == 'Buddha' ? 'selected' : '' }}>
                                                                         Buddha</option>
                                                                     <option value="Konghucu"
-                                                                        {{ $authenticated_user_data->agama_karyawan == 'Konghucu' ? 'selected' : '' }}>
+                                                                        {{ $religion == 'Konghucu' ? 'selected' : '' }}>
                                                                         Konghucu</option>
                                                                 </select>
                                                             </div>
@@ -427,7 +442,8 @@
                                                                 <input type="hidden" class="form-control"
                                                                     id="id" name="user_id"
                                                                     placeholder="ID"
-                                                                    value="{{ $authenticated_user_data->daftar_login->user_id }}" />
+                                                                    {{-- value="{{ $authenticated_user_data->daftar_login->user_id }}" /> --}}
+                                                                    value="{{ $authenticated_user_data->daftar_login ? $authenticated_user_data->daftar_login->user_id : ($authenticated_user_data->daftar_login_4get ? $authenticated_user_data->daftar_login_4get->user_id : '') }}" />
                                                                 <input type="hidden" class="form-control"
                                                                     id="type" name="type"
                                                                     placeholder="TYPE"
@@ -436,7 +452,8 @@
                                                                 <input type="text" class="form-control"
                                                                     id="account-username" name="username"
                                                                     placeholder="Username"
-                                                                    value="{{ $authenticated_user_data->daftar_login->username }}" />
+                                                                    {{-- value="{{ $authenticated_user_data->daftar_login->username }}" /> --}}
+                                                                    value="{{ $authenticated_user_data->daftar_login ? $authenticated_user_data->daftar_login->username : ($authenticated_user_data->daftar_login_4get ? $authenticated_user_data->daftar_login_4get->username : '') }}" />
                                                             </div>
                                                         </div>
                                                         <div class="col-12 col-sm-6">
@@ -444,7 +461,8 @@
                                                                 <label for="account-e-mail">E-mail</label>
                                                                 <input type="email" class="form-control"
                                                                     id="account-e-mail" name="email" placeholder="Email"
-                                                                    value="{{ $authenticated_user_data->daftar_login->email }}" />
+                                                                    {{-- value="{{ $authenticated_user_data->daftar_login->email }}" /> --}}
+                                                                    value="{{ $authenticated_user_data->daftar_login ? $authenticated_user_data->daftar_login->email : ($authenticated_user_data->daftar_login_4get ? $authenticated_user_data->daftar_login_4get->email : '') }}" />
                                                             </div>
                                                         </div>
                                                         <div class="col-12 col-sm-6">

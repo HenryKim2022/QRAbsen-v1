@@ -29,6 +29,14 @@ class Karyawan_Model extends Model
     {
         return $this->belongsTo(DaftarLogin_Model::class, 'id_karyawan');
     }
+    public function daftar_login_4get()
+    {
+        // return $this->belongsTo(DaftarLogin_Model::class, 'id_karyawan');
+        return $this->hasOne(DaftarLogin_Model::class, 'id_karyawan');
+
+    }
+
+
     public function absen()
     {
         return $this->hasMany(Absen_Model::class, 'id_karyawan');

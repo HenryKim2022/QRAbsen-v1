@@ -89,13 +89,17 @@ Route::middleware('auth')->group(function () {
     Route::post('/m-absen/add', [AbsenController::class, 'add_absen'])->name('m.absen.add');
     Route::post('/m-absen/edit', [AbsenController::class, 'edit_absen'])->name('m.absen.edit');
     Route::post('/m-absen/delete', [AbsenController::class, 'delete_absen'])->name('m.absen.del');
+    Route::post('/m-absen/reset', [AbsenController::class, 'reset_absen'])->name('m.absen.reset');
 });
 Route::middleware('auth')->group(function () {
     Route::get('/m-user', [UserLoginController::class, 'index'])->name('m.user');
     Route::post('/m-user/add', [UserLoginController::class, 'add_user'])->name('m.user.add');
     Route::post('/m-user/edit', [UserLoginController::class, 'edit_user'])->name('m.user.edit');
     Route::post('/m-user/delete', [UserLoginController::class, 'delete_user'])->name('m.user.del');
+    Route::post('/m-user/reset', [UserLoginController::class, 'reset_user'])->name('m.user.reset');
     Route::post('/m-user/emp/load', [UserLoginController::class, 'get_user'])->name('m.user.getuser');
+    Route::get('/m-user/emp/load', [UserLoginController::class, 'get_user'])->name('m.user.getuser.manual');
+    Route::get('/m-user/edit', [UserLoginController::class, 'edit_user'])->name('m.user.edit.manual');
 });
 
 

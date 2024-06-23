@@ -18,7 +18,8 @@ use Illuminate\Support\Facades\Session;
 class AuthController extends Controller
 {
     //
-    public function showLogin(Request $request){
+    public function showLogin(Request $request)
+    {
         $process = $this->setPageSession("Login Page", "login");
         if ($process) {
             $data = [
@@ -28,7 +29,8 @@ class AuthController extends Controller
         }
     }
 
-    public function doLogin(Request $request){
+    public function doLogin(Request $request)
+    {
         $validator = Validator::make($request->all(), []);
         $validator->after(function ($validator) use ($request) {        // Custom Validation: Check username/email exist
             $usernameEmail = $request->input('username-email');
@@ -71,15 +73,19 @@ class AuthController extends Controller
             Session::flash('success', ['Welcome back :)']);
 
             $user = auth()->user();
-            $authenticated_user_data = Karyawan_Model::with('daftar_login.karyawan', 'jabatan.karyawan')->find($user->id_karyawan);
+            $authenticated_user_data = Karyawan_Model::with(['daftar_login.karyawan', 'daftar_login_4get.karyawan' => function ($query) {
+                $query->orderBy('created_at', 'desc')->withoutTrashed()->take(1);
+            }, 'jabatan.karyawan'])
+            ->find($user->id_karyawan);
             // dd($authenticated_user_data->toArray());
-            Session::put('authenticated_user_data', $authenticated_user_data);
 
+
+            Session::put('authenticated_user_data', $authenticated_user_data);
             if ($user->type === "admin") {
                 return redirect()->route('userPanels.dashboard'); // Redirect to admin dashboard
             } elseif ($user->type === "karyawan") {
                 return redirect()->route('userPanels.dashboard'); // Redirect to karyawan dashboard
-            }else{
+            } else {
                 return redirect()->route('login.page'); // Redirect to login page
             }
         } else {
@@ -92,7 +98,8 @@ class AuthController extends Controller
 
 
 
-    public function showRegister(Request $request){
+    public function showRegister(Request $request)
+    {
         $process = $this->setPageSession("Register Page", "register");
         if ($process) {
             $data = [
@@ -102,28 +109,32 @@ class AuthController extends Controller
         }
     }
 
-    public function doRegister(Request $request){
-        $validator = Validator::make($request->all(), [
-            'register-id-karyawan'     => 'required|string',
-            'register-name-karyawan'   => 'required|string',
-            'register-username' => 'required|string|unique:tb_daftar_login,username',
-            'register-email'    => 'required|email|unique:tb_daftar_login,email',
-            'register-password' => 'required|min:6',
-            'register-confirm-password'  => 'required|same:register-password',
-            'register-privacy-policy'    => 'required|accepted',
-        ],
-        [
-            'register-id-karyawan.required' => 'The id field is required.',
-            'register-name-karyawan.required' => 'The name field is required.',
-            'register-username.required' => 'The username field is required.',
-            'register-email.required' => 'The email field is required.',
-            'register-password.required' => 'The password field is required.',
-            'register-confirm-password.required' => 'The confirm password field is required.',
-            'register-privacy-policy.required' => 'You must accept the terms and conditions.',
-            'register-email.email' => 'The email must be a valid email address.',
-            'register-confirm-password.min' => 'The password must be at least :min characters.',
-            'register-confirm-password.same' => 'The confirm password must match the password.',
-        ]);
+    public function doRegister(Request $request)
+    {
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'register-id-karyawan'     => 'required|string',
+                'register-name-karyawan'   => 'required|string',
+                'register-username' => 'required|string|unique:tb_daftar_login,username',
+                'register-email'    => 'required|email|unique:tb_daftar_login,email',
+                'register-password' => 'required|min:6',
+                'register-confirm-password'  => 'required|same:register-password',
+                'register-privacy-policy'    => 'required|accepted',
+            ],
+            [
+                'register-id-karyawan.required' => 'The id field is required.',
+                'register-name-karyawan.required' => 'The name field is required.',
+                'register-username.required' => 'The username field is required.',
+                'register-email.required' => 'The email field is required.',
+                'register-password.required' => 'The password field is required.',
+                'register-confirm-password.required' => 'The confirm password field is required.',
+                'register-privacy-policy.required' => 'You must accept the terms and conditions.',
+                'register-email.email' => 'The email must be a valid email address.',
+                'register-confirm-password.min' => 'The password must be at least :min characters.',
+                'register-confirm-password.same' => 'The confirm password must match the password.',
+            ]
+        );
         if ($validator->fails()) {
             $toast_message = $validator->errors()->all();
             Session::flash('errors', $toast_message);
@@ -152,7 +163,8 @@ class AuthController extends Controller
 
 
 
-    public function doLogoutUPanel(Request $request){
+    public function doLogoutUPanel(Request $request)
+    {
         $process = $this->setPageSession("Login Page", "login");
         if ($process) {
             Auth::guard('web')->logout();
@@ -162,7 +174,8 @@ class AuthController extends Controller
         }
     }
 
-    public function doLogoutULanding(Request $request){
+    public function doLogoutULanding(Request $request)
+    {
         $process = $this->setPageSession("Landing Page", "landing-page");
         if ($process) {
             Auth::guard('web')->logout();
@@ -171,7 +184,4 @@ class AuthController extends Controller
             return Redirect::to('/');
         }
     }
-
-
-
 }

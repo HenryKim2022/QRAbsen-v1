@@ -83,7 +83,7 @@
                                                     <div class="dropdown-menu dropdown-menu-right"
                                                         aria-labelledby="tableActionDropdown">
                                                         <a class="edit-record dropdown-item d-flex align-items-center"
-                                                            user_id_value = "{{ $userLogin->user_id }}"
+                                                            user_id_value = "{{ $userLogin->user_id }}" karyawan_id_value = "{{ $userLogin->karyawan->id_karyawan }}"
                                                             onclick="openModal('{{ $modalData['modal_edit'] }}')">
                                                             <i data-feather="edit" class="mr-1" style="color: #28c76f;"></i>
                                                             Edit
@@ -169,6 +169,7 @@
 
             $(document).on('click', '.edit-record', function(event) {
                 var userID = $(this).attr('user_id_value');
+                var karyawanID = $(this).attr('karyawan_id_value');
                 console.log('Edit button clicked for user_id:', userID);
 
                 setTimeout(() => {
@@ -179,15 +180,16 @@
                             'X-CSRF-TOKEN': '{{ csrf_token() }}' // Update the CSRF token here
                         },
                         data: {
-                            userID: userID
+                            userID: userID,
+                            karyawanID: karyawanID
                         },
                         success: function(response) {
                             console.log(response);
                             $('#user_id').val(response.user_id);
+                            $('#modalEditEmployee').val(response.id_karyawan);
                             $('#modalEditUsername').val(response.username);
                             $('#modalEditEmail').val(response.email);
-                            $('#modalEditPassword').val(response.password);
-                            $('#modalEditEmployee').val(response.id_karyawan);
+                            // $('#modalEditPassword').val(response.password);
 
                             setEmpList();
 
@@ -247,11 +249,11 @@
                             modalToShow.show();
                         },
                         error: function(error) {
-                            console.log("Err:\n");
+                            console.log("Err [JS]:\n");
                             console.log(error);
                         }
                     });
-                });
+                }); // <-- Closing parenthesis for setTimeout
             });
 
             const saveRecordBtn = document.querySelector('#' + modalId + ' #confirmSave');
@@ -261,7 +263,6 @@
                     targetedModalForm.submit(); // Submit the form if validation passes
                 });
             }
-
         });
     </script>
 

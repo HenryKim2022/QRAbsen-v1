@@ -9,7 +9,7 @@
                  </button>
              </div>
              <div class="modal-body">
-                 <form class="row g-2 needs-validation mt-1" method="POST" action="{{ route('m.user.add') }}" id="edit_userModalFORM"
+                 <form class="row g-2 needs-validation mt-1" method="POST" action="{{ route('m.user.edit') }}" id="edit_userModalFORM"
                      novalidate>
                      @csrf
                      <input type="hidden" id="user_id" name="user_id" value="" />
@@ -17,10 +17,8 @@
                          <div class="form-group mb-0">
                              <label>Employee</label>
                              <select class="select2 form-control form-control-lg" name="modalEditEmployee" id="modalEditEmployee">
-                                 <option value=""
-                                     {{ !$authenticated_user_data->agama_karyawan ? 'selected' : '' }}>
-                                     Select employee</option>
-                             </select>
+                                {{-- GOT OPTIONS FROM JS --}}
+                            </select>
                          </div>
                      </div>
                      <div class="col-12 col-md-6">

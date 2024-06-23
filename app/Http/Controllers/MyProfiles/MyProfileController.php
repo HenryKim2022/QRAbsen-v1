@@ -32,7 +32,7 @@ class MyProfileController extends Controller
             // // dd($authenticated_user_data->toArray());
 
             $user = auth()->user();
-            $authenticated_user_data = Karyawan_Model::with('daftar_login.karyawan', 'jabatan.karyawan')->find($user->id_karyawan);
+            $authenticated_user_data = Karyawan_Model::with('daftar_login.karyawan', 'daftar_login_4get.karyawan', 'jabatan.karyawan')->find($user->id_karyawan);
             if (!$authenticated_user_data) {
                 return redirect()->back(); // Redirect to the previous page or handle the case when authenticated_user_data is not available
             }
@@ -102,9 +102,6 @@ class MyProfileController extends Controller
                 $karyawan->foto_karyawan = $filename;
                 $karyawan->save();
 
-                // Update the authenticated_user_data session variable
-                // $updatedUser = Karyawan_Model::find($karyawan->id_karyawan);
-                // Session::put('authenticated_user_data', $updatedUser);
                 $authenticated_user_data = Karyawan_Model::find($karyawan->user_id);      // Re-auth after saving
                 $user = auth()->user();
                 $authenticated_user_data = Karyawan_Model::with('daftar_login.karyawan', 'jabatan.karyawan')->find($user->id_karyawan);
@@ -134,7 +131,7 @@ class MyProfileController extends Controller
                 'account-name'  => 'sometimes|required|min:3',
                 'birth-loc'  => 'sometimes|required',
                 'birth-date'  => 'sometimes|required',
-                'religion'  => 'sometimes|required',
+                // 'religion'  => 'sometimes|required',
                 'address'  => 'sometimes|required',
                 'notelp'  => 'sometimes|required',
             ],
@@ -142,7 +139,7 @@ class MyProfileController extends Controller
                 'account-name.required' => 'The account-name field is required.',
                 'birth-loc.required' => 'The birth-loc field is required.',
                 'birth-date.required' => 'The birth-date field is required.',
-                'religion.required' => 'The religion field is required.',
+                // 'religion.required' => 'The religion field is required.',
                 'address.required'  => 'The address field is required.',
                 'notelp.required' => 'The notelp field is required.',
             ]
