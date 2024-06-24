@@ -12,27 +12,27 @@
                  <form class="row g-2 needs-validation mt-1" method="POST" action="{{ route('m.emp.roles.edit') }}" id="edit_roleModalFORM"
                      novalidate>
                      @csrf
-                     <input type="hidden" id="jabatan_id" name="jabatan_id" value="" />
-                     <input type="hidden" id="karyawan_id" name="karyawan_id" value="" />
+                     <input type="text" id="jabatan_id" name="jabatan_id" value="" />
+                     <input type="text" id="karyawan_id" name="karyawan_id" value="" />
                      <div class="col-xl-6 col-md-6 col-12 pr-sm-1 pr-md-1 pr-lg-0 pr-xl-0">
                         <div class="form-group mb-0">
                             <label>Employee</label>
                             <select class="select2 form-control form-control-lg" name="role-karyawan-id" id="role-karyawan-id">
                                 <option value="">Select Employee</option>
-                                @foreach($employee_list as $employee)
+                                {{-- @foreach($employee_list as $employee)
                                     <option value="{{ $employee->id_karyawan }}">
                                         {{ $employee->na_karyawan }}
                                     </option>
-                                @endforeach
+                                @endforeach --}}
                             </select>
                         </div>
                     </div>
 
                     <div class="col-xl-6 col-md-6 col-12">
                         <div class="form-group">
-                            <label class="form-label" for="role-name">RoleName</label>
-                            <input class="form-control form-control-merge" id="role-name" name="role-name"
-                                placeholder="e.g. Office Boy 1" aria-describedby="role-name" tabindex="4"></input>
+                            <label class="form-label" for="role_name">RoleName</label>
+                            <input class="form-control form-control-merge" id="role_name" name="role_name"
+                                placeholder="e.g. Office Boy 1" aria-describedby="role_name" tabindex="4"></input>
                         </div>
                     </div>
 

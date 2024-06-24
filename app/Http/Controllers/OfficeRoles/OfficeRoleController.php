@@ -28,7 +28,7 @@ class OfficeRoleController extends Controller
             $loadDaftarJabatanFromDB = Jabatan_Model::with(['karyawan'])->withoutTrashed()->get();
 
             $user = auth()->user();
-            $authenticated_user_data = Karyawan_Model::with('daftar_login.karyawan', 'daftar_login_4get.karyawan','jabatan.karyawan')->find($user->id_karyawan);
+            $authenticated_user_data = Karyawan_Model::with('daftar_login.karyawan', 'daftar_login_4get.karyawan', 'jabatan.karyawan')->find($user->id_karyawan);
 
             $modalData = [
                 'modal_add' => '#add_roleModal',
@@ -54,39 +54,49 @@ class OfficeRoleController extends Controller
     }
 
 
-
-
-
     public function get_role(Request $request)
     {
         $jabatanID = $request->input('jabatanID');
-        $daftarJabatan = Jabatan_Model::with('karyawan')->where('id_jabatan', $jabatanID)->first();
+        $karyawanID = $request->input('karyawanID');
 
+        $daftarJabatan = Jabatan_Model::where('id_jabatan', $jabatanID)->first();
         if ($daftarJabatan) {
+            if ($daftarJabatan->id_karyawan) {
+                $daftarJabatan->load('karyawan');
+            }
             $karyawan = $daftarJabatan->karyawan;
-            // Load the select input for Mark & Category (this loading is different from load_select_list_for_addmodal())
-            $employeeList = Jabatan_Model::all()->map(function ($user) use ($karyawan) {
-                $selected = ($user->id_karyawan == $karyawan->id_karyawan);
-                return [
-                    'value' => $user->karyawan->id_karyawan,
-                    'text' => $user->karyawan->na_karyawan,
-                    'selected' => $selected,
-                ];
-            });
+            $employeeList = [];
+            if ($karyawan) {
+                $employeeList = Karyawan_Model::all()->map(function ($user) use ($karyawan) {
+                    $selected = ($user->id_karyawan == $karyawan->id_karyawan);
+                    return [
+                        'value' => $user->id_karyawan,
+                        'text' => $user->na_karyawan,
+                        'selected' => $selected,
+                    ];
+                });
+            } else {
+                $employeeList = Karyawan_Model::withoutTrashed()->get()->map(function ($user) {
+                    return [
+                        'value' => $user->id_karyawan,
+                        'text' => $user->na_karyawan,
+                        'selected' => false,
+                    ];
+                });
+            }
 
             // Return queried data as a JSON response
             return response()->json([
                 'id_jabatan' => $jabatanID,
-                'na_jabatan' => $daftarJabatan->na_karyawan,
-                'id_karyawan' => $karyawan->id_karyawan,
+                'na_jabatan' => $daftarJabatan->na_jabatan,
+                'id_karyawan' => $karyawanID,
                 'employeeList' => $employeeList,
             ]);
         } else {
-            // Handle the case when the user with the given user_id is not found
-            return response()->json(['error' => 'OfficeRole not found'], 404);
+            // Handle the case when the Jabatan_Model with the given jabatanID is not found
+            return response()->json(['error' => 'Jabatan_Model not found'], 404);
         }
     }
-
 
 
 
@@ -128,6 +138,48 @@ class OfficeRoleController extends Controller
 
 
 
+    public function edit_role(Request $request)
+    {
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'role_name'  => 'required',
+                'bsvalidationcheckbox1'  => 'required',
+            ],
+            [
+                'role_name' => 'The role field is required.',
+                'bsvalidationcheckbox1'  => 'The saving agreement field is required.',
+            ]
+        );
+        if ($validator->fails()) {
+            $toast_message = $validator->errors()->all();
+            Session::flash('errors', $toast_message);
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $jab = Jabatan_Model::find($request->input('jabatan_id'));
+        if ($jab) {
+            $jab->na_jabatan = $request->input('role_name');
+            $id_karyawan = $request->input('role-karyawan-id');
+            if ($id_karyawan) {
+                $jab->id_karyawan = $id_karyawan;
+            }
+            $jab->save();
+
+            $user = auth()->user();
+            $authenticated_user_data = Karyawan_Model::with('daftar_login.karyawan', 'jabatan.karyawan')->find($user->id_karyawan);
+            Session::put('authenticated_user_data', $authenticated_user_data);
+
+            Session::flash('success', ['Role updated successfully!']);
+            return Redirect::back();
+        } else {
+            Session::flash('errors', ['Err[404]: Role update failed!']);
+        }
+    }
+
+
+
+
     public function delete_role(Request $request)
     {
         $jabatanID = $request->input('jabatan_id');
@@ -159,6 +211,4 @@ class OfficeRoleController extends Controller
         Session::flash('success', ['All role data reset successfully!']);
         return redirect()->back();
     }
-
-
 }

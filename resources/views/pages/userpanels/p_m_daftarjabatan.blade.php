@@ -69,7 +69,7 @@
                                                         aria-labelledby="tableActionDropdown">
                                                         <a class="edit-record dropdown-item d-flex align-items-center"
                                                             jabatan_id_value = "{{ $jab->id_jabatan }}"
-                                                            karyawan_id_value = "{{ $jab->id_karyawan }}"
+                                                            karyawan_id_value = "{{ $jab->karyawan !== null ? $jab->karyawan->id_karyawan : 0 }}"
                                                             onclick="openModal('{{ $modalData['modal_edit'] }}')">
                                                             <i data-feather="edit" class="mr-1" style="color: #28c76f;"></i>
                                                             Edit
@@ -173,7 +173,7 @@
                             console.log(response);
                             $('#jabatan_id').val(response.id_jabatan);
                             $('#karyawan_id').val(response.id_karyawan);
-                            $('#role-name').val(response.na_jabatan);
+                            $('#role_name').val(response.na_jabatan);
                             setEmpList(response);
 
                             console.log('SHOWING MODAL');
