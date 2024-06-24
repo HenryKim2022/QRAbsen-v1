@@ -408,7 +408,7 @@
                                                         </div>
                                                         <div class="col-12 col-sm-6">
                                                             <div class="form-group">
-                                                                <label for="notelp">No. Telp</label>
+                                                                <label for="notelp">No.Telp</label>
                                                                 <input type="text" class="form-control" id="notelp"
                                                                     name="notelp" placeholder="No. Telp"
                                                                     value="{{ $authenticated_user_data->notelp_karyawan ?: '+62 ' }}" />

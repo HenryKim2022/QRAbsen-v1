@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 
 class UserLoginController extends Controller
@@ -96,40 +97,52 @@ class UserLoginController extends Controller
         }
     }
 
-
-
     public function add_user(Request $request)
     {
         $validator = Validator::make(
             $request->all(),
             [
                 'modalAddEmployee'  => 'sometimes|required',
-                'modalAddUsername'  => [
+                'modalAddUsername' => [
                     'sometimes',
                     'required',
                     'string',
-                    Rule::unique('tb_daftar_login', 'username')->ignore($request->input('user_id'), 'user_id')
+                    Rule::unique('tb_daftar_login', 'username')->ignore($request->input('modalAddUsername'), 'username')->whereNull('deleted_at')
                 ],
-                'modalAddEmail'  => [
+                'modalAddEmail' => [
                     'sometimes',
                     'required',
                     'email',
-                    Rule::unique('tb_daftar_login', 'email')->ignore($request->input('modalEditEmail'), 'email')
+                    Rule::unique('tb_daftar_login', 'email')->ignore($request->input('modalAddEmail'), 'email')->whereNull('deleted_at')
                 ],
                 'modalAddUserType'  => 'sometimes|required|min:1',
-                'modalAddPassword' => 'sometimes|required',
+                'modalAddPassword' => 'sometimes|required'
             ],
             [
                 'modalAddEmployee' => 'The employee field is required.',
                 'modalAddUsername' => 'The username field is required.',
                 'modalAddEmail' => 'The email field is required.',
                 'modalAddUserType' => 'The user-type field is required.',
-                'modalAddPassword'  => 'The password field is required.',
+                'modalAddPassword'  => 'The password field is required.'
             ]
         );
+
         if ($validator->fails()) {
             $toast_message = $validator->errors()->all();
             Session::flash('errors', $toast_message);
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        // Perform the uniqueness check before saving the record
+        if (DaftarLogin_Model::withTrashed()->where('username', $request->input('modalAddUsername'))->exists()) {
+            $toast_message = ['The username has already been taken.'];
+            Session::flash('n_errors', $toast_message);
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        if (DaftarLogin_Model::where('email', $request->input('modalAddEmail'))->exists()) {
+            $toast_message = ['The email has already been taken.'];
+            Session::flash('n_errors', $toast_message);
             return redirect()->back()->withErrors($validator)->withInput();
         }
 

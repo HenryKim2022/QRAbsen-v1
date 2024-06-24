@@ -67,7 +67,7 @@
                              </div>
                          </div>
                      </div>
-                     <div class="modal-footer w-100 px-0 py-1 mt-1">
+                     {{-- <div class="modal-footer w-100 px-0 py-1 mt-1">
                          <div class="col-12 text-center">
                              <div class="d-flex flex-col justify-content-end">
                                  <button class="modal-btn btn btn-primary" data-dismiss="modal"
@@ -75,7 +75,14 @@
                                  <button class="modal-btn btn btn-success ml-1" type="submit">Save</button>
                              </div>
                          </div>
-                     </div>
+                     </div> --}}
+
+                     <div class="col-xl-12 col-md-12 col-12 mt-3">
+                        <div class="form-group d-flex justify-content-end gap-2">
+                            <button type="reset" class="btn btn-primary mr-1" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-success">Save</button>
+                        </div>
+                    </div>
 
 
                  </form>

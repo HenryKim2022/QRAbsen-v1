@@ -7,6 +7,20 @@
 @extends('layouts.userpanels.v_main')
 
 @section('header_page_cssjs')
+    <style>
+        .media .mr-25.p-1.rounded {
+            background-color: #30334e;
+            border: 1px solid rgba(20, 21, 33, 0.175);
+        }
+        .dark-layout .media.mr-25.p-1.rounded {
+            background-color: #ffffff;
+            border: 1px solid rgba(20, 21, 33, 0.175);
+        }
+        .light-layout .media.mr-25.p-1.rounded {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(20, 21, 33, 0.175);
+        }
+    </style>
 @endsection
 
 

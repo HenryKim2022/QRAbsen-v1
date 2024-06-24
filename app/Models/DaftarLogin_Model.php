@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Database\Eloquent\Builder;
+
 
 // class DaftarLogin_Model extends Model
 class DaftarLogin_Model extends Authenticatable
@@ -55,12 +55,5 @@ class DaftarLogin_Model extends Authenticatable
     }
 
 
-    public function newQuery($excludeDeleted = true)
-    {
-        if ($excludeDeleted) {
-            return parent::newQuery()->whereNull('deleted_at');
-        }
-        return parent::newQuery();
-    }
 
 }
