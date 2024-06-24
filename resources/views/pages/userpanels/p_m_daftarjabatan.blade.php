@@ -54,33 +54,17 @@
                             <table id="daftarLoginKaryawanTable" class="table table-striped">
                                 <thead>
                                     <tr>
+                                        <th>Act</th>
                                         <th>OfficeRole</th>
                                         <th>Assigned to</th>
                                         <th>Created</th>
                                         <th>Last-Update</th>
-                                        <th>Act</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {{-- {{dd($loadDaftarJabatanFromDB->toArray());}} --}}
                                     @foreach ($loadDaftarJabatanFromDB as $jab)
                                         <tr>
-                                            <td>{{ $jab->na_jabatan ?: '-' }}</td>
-                                            <td>{{ $jab->karyawan !== null ? $jab->karyawan->na_karyawan : '-' }}</td>
-                                            <td>
-                                                @if ($jab->created_at)
-                                                    {{ \Carbon\Carbon::parse($jab->created_at)->isoFormat('dddd, DD MMMM YYYY, h:mm:ss A') }}
-                                                @else
-                                                    -
-                                                @endif
-                                            </td>
-                                            <td>
-                                                @if ($jab->updated_at)
-                                                    {{ \Carbon\Carbon::parse($jab->updated_at)->isoFormat('dddd, DD MMMM YYYY, h:mm:ss A') }}
-                                                @else
-                                                    -
-                                                @endif
-                                            </td>
                                             <td>
                                                 <div class="dropdown d-lg-block d-sm-block d-md-block">
                                                     <button class="btn btn-icon navbar-toggler" type="button"
@@ -89,7 +73,7 @@
                                                         <i data-feather="align-justify" class="font-medium-5"></i>
                                                     </button>
                                                     <!-- dropdown menu -->
-                                                    <div class="dropdown-menu dropdown-menu-right"
+                                                    <div class="dropdown-menu dropdown-menu-end"
                                                         aria-labelledby="tableActionDropdown">
                                                         <a class="edit-record dropdown-item d-flex align-items-center"
                                                             jabatan_id_value = "{{ $jab->id_jabatan }}"
@@ -108,6 +92,23 @@
                                                     <!--/ dropdown menu -->
                                                 </div>
                                             </td>
+                                            <td>{{ $jab->na_jabatan ?: '-' }}</td>
+                                            <td>{{ $jab->karyawan !== null ? $jab->karyawan->na_karyawan : '-' }}</td>
+                                            <td>
+                                                @if ($jab->created_at)
+                                                    {{ \Carbon\Carbon::parse($jab->created_at)->isoFormat('dddd, DD MMMM YYYY, h:mm:ss A') }}
+                                                @else
+                                                    -
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if ($jab->updated_at)
+                                                    {{ \Carbon\Carbon::parse($jab->updated_at)->isoFormat('dddd, DD MMMM YYYY, h:mm:ss A') }}
+                                                @else
+                                                    -
+                                                @endif
+                                            </td>
+
                                         </tr>
                                     @endforeach
                                 </tbody>

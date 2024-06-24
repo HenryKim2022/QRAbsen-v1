@@ -54,8 +54,8 @@
                             <table id="daftarLoginKaryawanTable" class="table table-striped">
                                 <thead>
                                     <tr>
+                                        <th>Id</th>
                                         <th>Act</th>
-                                        <th>Emp-ID</th>
                                         <th>Name</th>
                                         <th>Address</th>
                                         <th>No. Telp</th>
@@ -71,6 +71,7 @@
                                     {{-- {{dd($loadDaftarKaryawanFromDB->toArray());}} --}}
                                     @foreach ($loadDaftarKaryawanFromDB as $karyawan)
                                         <tr>
+                                            <td>{{ $karyawan->id_karyawan ?: '-' }}</td>
                                             <td>
                                                 <div class="dropdown d-lg-block d-sm-block d-md-block">
                                                     <button class="btn btn-icon navbar-toggler pt-0" type="button"
@@ -97,7 +98,6 @@
                                                     <!--/ dropdown menu -->
                                                 </div>
                                             </td>
-                                            <td>{{ $karyawan->id_karyawan ?: '-' }}</td>
                                             <td>{{ $karyawan->na_karyawan ?: '-' }}</td>
 
                                             <td>{{ $karyawan->alamat_karyawan ?: '-' }}</td>

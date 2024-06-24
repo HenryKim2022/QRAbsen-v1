@@ -65,6 +65,32 @@
                                 <tbody>
                                     @foreach ($loadDaftarLoginFromDB as $userLogin)
                                         <tr>
+                                            <td>
+                                                <div class="dropdown d-lg-block d-sm-block d-md-block">
+                                                    <button class="btn btn-icon navbar-toggler" type="button"
+                                                        id="tableActionDropdown" data-toggle="dropdown" aria-haspopup="true"
+                                                        aria-expanded="false">
+                                                        <i data-feather="align-justify" class="font-medium-5"></i>
+                                                    </button>
+                                                    <!-- dropdown menu -->
+                                                    <div class="dropdown-menu dropdown-menu-end"
+                                                        aria-labelledby="tableActionDropdown">
+                                                        <a class="edit-record dropdown-item d-flex align-items-center"
+                                                            user_id_value = "{{ $userLogin->user_id }}" karyawan_id_value = "{{ $userLogin->karyawan->id_karyawan }}"
+                                                            onclick="openModal('{{ $modalData['modal_edit'] }}')">
+                                                            <i data-feather="edit" class="mr-1" style="color: #28c76f;"></i>
+                                                            Edit
+                                                        </a>
+                                                        <a class="delete-record dropdown-item d-flex align-items-center"
+                                                            user_id_value = "{{ $userLogin->user_id }}"
+                                                            onclick="openModal('{{ $modalData['modal_delete'] }}')">
+                                                            <i data-feather="trash" class="mr-1" style="color: #ea5455;"></i>
+                                                            Delete
+                                                        </a>
+                                                    </div>
+                                                    <!--/ dropdown menu -->
+                                                </div>
+                                            </td>
                                             <td>{{ $userLogin->karyawan->na_karyawan ?: '-' }}</td>
                                             <td>{{ $userLogin->username ?: '-' }}</td>
                                             <td>{{ $userLogin->email ?: '-' }}</td>
@@ -95,32 +121,7 @@
                                                     -
                                                 @endif
                                             </td>
-                                            <td>
-                                                <div class="dropdown d-lg-block d-sm-block d-md-block">
-                                                    <button class="btn btn-icon navbar-toggler" type="button"
-                                                        id="tableActionDropdown" data-toggle="dropdown" aria-haspopup="true"
-                                                        aria-expanded="false">
-                                                        <i data-feather="align-justify" class="font-medium-5"></i>
-                                                    </button>
-                                                    <!-- dropdown menu -->
-                                                    <div class="dropdown-menu dropdown-menu-right"
-                                                        aria-labelledby="tableActionDropdown">
-                                                        <a class="edit-record dropdown-item d-flex align-items-center"
-                                                            user_id_value = "{{ $userLogin->user_id }}" karyawan_id_value = "{{ $userLogin->karyawan->id_karyawan }}"
-                                                            onclick="openModal('{{ $modalData['modal_edit'] }}')">
-                                                            <i data-feather="edit" class="mr-1" style="color: #28c76f;"></i>
-                                                            Edit
-                                                        </a>
-                                                        <a class="delete-record dropdown-item d-flex align-items-center"
-                                                            user_id_value = "{{ $userLogin->user_id }}"
-                                                            onclick="openModal('{{ $modalData['modal_delete'] }}')">
-                                                            <i data-feather="trash" class="mr-1" style="color: #ea5455;"></i>
-                                                            Delete
-                                                        </a>
-                                                    </div>
-                                                    <!--/ dropdown menu -->
-                                                </div>
-                                            </td>
+
                                         </tr>
                                     @endforeach
                                 </tbody>
