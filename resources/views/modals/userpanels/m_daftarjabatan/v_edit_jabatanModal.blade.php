@@ -12,12 +12,12 @@
                  <form class="row g-2 needs-validation mt-1" method="POST" action="{{ route('m.emp.roles.edit') }}" id="edit_roleModalFORM"
                      novalidate>
                      @csrf
-                     <input type="text" id="jabatan_id" name="jabatan_id" value="" />
-                     <input type="text" id="karyawan_id" name="karyawan_id" value="" />
+                     <input type="hidden" id="jabatan_id" name="jabatan_id" value="" />
+                     <input type="hidden" id="karyawan_id" name="karyawan_id" value="" />
                      <div class="col-xl-6 col-md-6 col-12 pr-sm-1 pr-md-1 pr-lg-0 pr-xl-0">
                         <div class="form-group mb-0">
                             <label>Employee</label>
-                            <select class="select2 form-control form-control-lg" name="role-karyawan-id" id="role-karyawan-id">
+                            <select class="select2 form-control form-control-lg" name="edit-role-karyawan-id" id="edit-role-karyawan-id">
                                 <option value="">Select Employee</option>
                                 {{-- @foreach($employee_list as $employee)
                                     <option value="{{ $employee->id_karyawan }}">

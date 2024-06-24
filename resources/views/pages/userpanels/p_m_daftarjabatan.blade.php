@@ -192,7 +192,7 @@
 
             function setEmpList(response) {
                 var empSelect = $('#' + modalId +
-                    ' #role-karyawan-id');
+                    ' #edit-role-karyawan-id');
                 empSelect.empty(); // Clear existing options
                 empSelect.append($('<option>', {
                     value: "",

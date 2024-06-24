@@ -160,7 +160,7 @@ class OfficeRoleController extends Controller
         $jab = Jabatan_Model::find($request->input('jabatan_id'));
         if ($jab) {
             $jab->na_jabatan = $request->input('role_name');
-            $id_karyawan = $request->input('role-karyawan-id');
+            $id_karyawan = $request->input('edit-role-karyawan-id');
             $jab->id_karyawan = $id_karyawan;
             $jab->save();
 
