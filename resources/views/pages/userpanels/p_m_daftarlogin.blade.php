@@ -1,3 +1,9 @@
+@php
+    $page = Session::get('page');
+    $page_title = $page['page_title'];
+    // $authenticated_user_data = Session::get('authenticated_user_data');
+@endphp
+
 @extends('layouts.userpanels.v_main')
 
 @section('header_page_cssjs')
@@ -16,6 +22,24 @@
 
     @auth
         <section id="dashboard-ecommerce">
+            <div class="content-header row">
+                <div class="content-header-left col-md-9 col-12 mb-2">
+                    <div class="row breadcrumbs-top">
+                        <div class="col-12">
+                            <h2 class="content-header-title float-left mb-0">{{ $page_title }}</h2>
+                            <div class="breadcrumb-wrapper">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{{ route('userPanels.dashboard') }}">UserPanels</a>
+                                    </li>
+                                    <li class="breadcrumb-item active"> {{ $page_title }}
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="row match-height">
                 <!-- QRCodeCheck-out Card -->
                 <div class="col-lg-4 col-md-6 col-12">
