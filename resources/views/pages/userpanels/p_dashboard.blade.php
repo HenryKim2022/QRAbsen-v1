@@ -56,7 +56,7 @@
                             <div class="avatar-group h-auto w-auto d-flex align-items-center justify-content-center">
                                 <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom"
                                     data-original-title="ScanMe :)" class="pull-up">
-                                    <img class="img-fluid rounded-0 hover-image"
+                                    <img class="img-fluid rounded-0 hover-qr-image"
                                         src="data:image/png;base64,{{ $checkInQRCode }}" alt="QR Image">
                                 </div>
                             </div>
@@ -225,7 +225,7 @@
                             <div class="avatar-group h-auto w-auto d-flex align-items-center justify-content-center">
                                 <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom"
                                     data-original-title="ScanMe :)" class="pull-up">
-                                    <img class="img-fluid rounded-0 hover-image"
+                                    <img class="img-fluid rounded-0 hover-qr-image"
                                         src="data:image/png;base64,{{ $checkOutQRCode }}" alt="QR Image">
                                 </div>
                             </div>
@@ -310,9 +310,9 @@
         // Set the current time, target time, and stop time
         const currentTime = new Date();
         const targetDate = new Date();
-        targetDate.setHours(06, 00, 0, 0); // Set the target time to 06:00 AM
+        targetDate.setHours(6, 0, 0, 0); // Set the target time to 06:00 AM
         const stopTime = new Date();
-        stopTime.setHours(17, 01, 0, 0); // Set the stop time to 17:01 PM
+        stopTime.setHours(0, 0, 0, 0); // Set the stop time to 00:00 AM (midnight)
 
         // If the target time or stop time has already passed for today, move them to tomorrow
         if (targetDate <= currentTime) {
@@ -329,14 +329,12 @@
                 const now = new Date().getTime();
                 const timeRemaining = targetDate - now;
 
-                // Calculate days, hours, minutes, and seconds remaining
-                const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+                // Calculate hours, minutes, and seconds remaining
                 const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
 
                 // Update the countdown timer display
-                updateTimer('.countdown-timer .days', days);
                 updateTimer('.countdown-timer .hours', hours);
                 updateTimer('.countdown-timer .minutes', minutes);
                 updateTimer('.countdown-timer .seconds', seconds);
@@ -358,7 +356,6 @@
         // Start the countdown with the targetDate and stopTime values
         startCountdown(targetDate, stopTime);
     </script>
-
 
     @auth
         <script>

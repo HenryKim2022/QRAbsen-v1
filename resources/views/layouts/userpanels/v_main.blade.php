@@ -26,10 +26,15 @@
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
         <div class="content-wrapper">
-            <div id="image-popup" class="modal-dialog-centered-cust col-8 col-sm-6 col-md-4 p-2">
+            <div id="image-popup" class="modal-dialog-centered-cust modal-lg modal-dialog-scrollable col-8 col-sm-6 col-md-4 p-2">
                 <span class="close-btn btn btn-sm btn-text-primary rounded-pill btn-icon"><i
                         class="mdi mdi-close"></i></span>
-                <img src="" alt="Large Image" />
+                <img src="" alt="Large Image" style="max-height: 85vh" />
+            </div>
+            <div id="qr-popup" class="modal-dialog-centered-cust col-8 col-sm-6 col-md-4 p-2">
+                <span class="close-btn btn btn-sm btn-text-primary rounded-pill btn-icon"><i
+                        class="mdi mdi-close"></i></span>
+                <img src="" alt="Large Image" style="max-height: 85vh" />
             </div>
 
             @yield('page-content')

@@ -82,7 +82,7 @@
 
                                             <div class="profile-img">
                                                 <img src="{{ $authenticated_user_data->foto_karyawan == null ? env('APP_DEFAULT_AVATAR') : 'public/avatar/uploads/' . $authenticated_user_data->foto_karyawan }}"
-                                                    class="rounded img-fluid hover-image" alt="Card image" />
+                                                    class="rounded img-fluid hover-qr-image" alt="Card image" />
                                             </div>
                                             <!-- profile title -->
                                             <div class="profile-title ml-3">
@@ -261,7 +261,7 @@
                                                 <div class="media">
                                                     <a href="javascript:void(0);" class="mr-25">
                                                         <img src="{{ $authenticated_user_data->foto_karyawan == null ? env('APP_DEFAULT_AVATAR') : 'public/avatar/uploads/' . $authenticated_user_data->foto_karyawan }}"
-                                                            id="account-upload-img" class="rounded hover-image mr-50" alt="profile image"
+                                                            id="account-upload-img" class="rounded hover-qr-image mr-50" alt="profile image"
                                                             height="80" width="80" />
                                                     </a>
                                                     <!-- upload and reset button -->

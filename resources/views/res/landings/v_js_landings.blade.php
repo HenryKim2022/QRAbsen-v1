@@ -113,6 +113,62 @@
 </script>
 
 
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const hoverQRImages = document.querySelectorAll('.hover-qr-image');
+        const qrPopup = document.getElementById('qr-popup');
+        const popupQRImage = qrPopup.querySelector('img');
+        const closeQRBtn = qrPopup.querySelector('.close-btn');
+
+        hoverQRImages.forEach(function(image) {
+            image.addEventListener('click', function() {
+                const largeImageSrc = this.getAttribute('src');
+                popupQRImage.src = largeImageSrc;
+                qrPopup.style.display = 'block';
+                centerQRPopup();
+            });
+        });
+
+        closeQRBtn.addEventListener('click', function() {
+            qrPopup.style.display = 'none';
+        });
+
+
+        // Center the popup when the window is resized
+        window.addEventListener('resize', function() {
+            if (qrPopup.style.display === 'block') {
+                centerQRPopup();
+            }
+        });
+
+        // Function to center the popup
+        function centerQRPopup() {
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+            const popupWidth = qrPopup.offsetWidth;
+            const popupHeight = qrPopup.offsetHeight;
+
+            const topPosition = (windowHeight - popupHeight) / 2;
+            const leftPosition = (windowWidth - popupWidth) / 2;
+
+            qrPopup.style.top = topPosition + 'px';
+            qrPopup.style.left = leftPosition + 'px';
+        }
+
+        var hover_qr_images = document.querySelectorAll('.hover-qr-image');
+        if (hover_qr_images.length > 0) {
+            hover_qr_images.forEach(function(hover_img) {
+                hover_img.setAttribute('data-bs-toggle', 'tooltip');
+                hover_img.setAttribute('data-bs-placement', 'top');
+                hover_img.setAttribute('title', 'Click to Enlarge!');
+            });
+        }
+    });
+</script>
+
+
+
 <script>
     function openModal(modalId) {
         var modal = document.querySelector(modalId);

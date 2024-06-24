@@ -45,10 +45,12 @@
         href="{{ asset('public/vuexy/app-assets/css/plugins/extensions/ext-component-toastr.css') }}">
     <!-- END: Page CSS-->
 
-    <!-- BEGIN: Custom CSS-->
+    <!--------------------------------------------------------------BEGIN: Custom CSS---------------------------------------------------------------->
     <link rel="stylesheet" type="text/css" href="{{ asset('public/vuexy/assets/css/style.css') }}">
+    <!-- BEGIN: IMAGE ENLARGE POPUP -->
     <style>
         @-moz-document url-prefix() {
+
             input[type="text"].dark-mode,
             input[type="email"].dark-mode,
             input[type="password"].dark-mode {
@@ -79,11 +81,13 @@
             outline: 0;
             z-index: 9999;
         }
+
         .dark-layout #image-popup {
             background-color: #ffffff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             border: 1px solid rgba(20, 21, 33, 0.175);
         }
+
         .light-layout .dark-layout #image-popup {
             background-color: #ffffff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -107,7 +111,65 @@
             background-color: rgba(248, 23, 23, 0.945);
         }
     </style>
-    <!-- END: Custom CSS-->
+    <!-- END: IMAGE ENLARGE POPUP -->
+
+    <!-- BEGIN: IMAGE ENLARGE QRPOPUP -->
+    <style>
+        .modal-dialog-centered-cust {
+            display: flex;
+            align-items: center;
+            min-height: fit-content;
+        }
+
+        .hover-qr-image {
+            cursor: pointer;
+        }
+
+        #qr-popup {
+            display: none;
+            position: fixed;
+            padding: 10px;
+            background-clip: padding-box;
+            background-color: #30334e;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(20, 21, 33, 0.175);
+            border-radius: 0.625rem;
+            outline: 0;
+            z-index: 9999;
+        }
+
+        .dark-layout #qr-popup {
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(20, 21, 33, 0.175);
+        }
+
+        .light-layout .dark-layout #qr-popup {
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(20, 21, 33, 0.175);
+        }
+
+        #qr-popup img {
+            width: 100%;
+        }
+
+        #qr-popup .close-btn {
+            position: absolute;
+            top: 0.15rem;
+            right: 0.15rem;
+            cursor: pointer;
+            color: #fff;
+            background-color: rgba(248, 23, 23, 0.267);
+        }
+
+        #qr-popup .close-btn:hover {
+            background-color: rgba(248, 23, 23, 0.945);
+        }
+    </style>
+    <!-- END: IMAGE ENLARGE QRPOPUP -->
+    <!--------------------------------------------------------------END: Custom CSS---------------------------------------------------------------->
+
 
     @yield('header_page_cssjs')
 </head>

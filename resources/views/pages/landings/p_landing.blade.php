@@ -168,7 +168,7 @@
                         <div class="avatar-group h-auto w-auto d-flex align-items-center justify-content-center">
                             <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom"
                                 data-original-title="ScanMe :)" class="pull-up">
-                                <img class="img-fluid rounded-0 hover-image" src="data:image/png;base64,{{ $loginQRCode }}"
+                                <img class="img-fluid rounded-0 hover-qr-image" src="data:image/png;base64,{{ $loginQRCode }}"
                                     alt="QR Image">
                             </div>
                         </div>
