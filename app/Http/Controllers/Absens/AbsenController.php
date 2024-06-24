@@ -23,7 +23,7 @@ class AbsenController extends Controller
     //
     public function index(Request $request)
     {
-        $process = $this->setPageSession("Manage Users", "m-user");
+        $process = $this->setPageSession("Manage Attende", "m-absen");
         if ($process) {
             $loadDaftarAbsenFromDB = [];
             $loadDaftarAbsenFromDB = Absen_Model::with(['karyawan'])->withoutTrashed()->get();
