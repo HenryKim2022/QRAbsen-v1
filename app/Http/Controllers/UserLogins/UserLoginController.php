@@ -140,7 +140,7 @@ class UserLoginController extends Controller
         $inst->type = $request->input('modalAddUserType');
         $inst->id_karyawan = $request->input('modalAddEmployee');
 
-        Session::flash('success', ['Institution added successfully!']);
+        Session::flash('success', ['User added successfully!']);
         $inst->save();
         return redirect()->back();
     }
@@ -209,31 +209,47 @@ class UserLoginController extends Controller
 
     public function delete_user(Request $request)
     {
-        $inst = DaftarLogin_Model::find($request->input('user_id'));
-        if ($inst) {
-            $inst->delete();
+        $userToDeleteID = $request->input('user_id');
+        $authenticated_user_data = Session::get('authenticated_user_data');
+        $current_user_rel_karyawan = $authenticated_user_data->id_karyawan;
 
-            $user = auth()->user();
-            $authenticated_user_data = Karyawan_Model::with('daftar_login.karyawan', 'jabatan.karyawan')->find($user->id_karyawan);
-            Session::put('authenticated_user_data', $authenticated_user_data);
+        if ($userToDeleteID != $current_user_rel_karyawan) {
+            $inst = DaftarLogin_Model::find($userToDeleteID);
+            if ($inst) {
+                $inst->delete();
 
-            Session::flash('success', ['User deletion successful!']);
+                $user = auth()->user();
+                $authenticated_user_data = Karyawan_Model::with('daftar_login.karyawan', 'jabatan.karyawan')->find($user->id_karyawan);
+                Session::put('authenticated_user_data', $authenticated_user_data);
+
+                Session::flash('success', ['User deletion successful!']);
+            } else {
+                Session::flash('n_errors', ['Err[404]: User deletion failed!']);
+            }
         } else {
-            Session::flash('errors', ['Err[404]: User deletion failed!']);
+            Session::flash('n_errors', ['You cannot delete the currently logged-in user!']);
         }
+
         return redirect()->back();
     }
 
+
+
     public function reset_user(Request $request)
     {
-        DaftarLogin_Model::query()->delete();
+        $user = auth()->user();
+        $karyawanID = $user->id_karyawan;
+
+        // Soft delete all DaftarLogin_Model records except the one associated with the authenticated user's karyawanID
+        DaftarLogin_Model::where('id_karyawan', '!=', $karyawanID)->delete();
+
+        // Reset the auto-increment value of the table
         DB::statement('ALTER TABLE tb_daftar_login AUTO_INCREMENT = 1');
 
-        $user = auth()->user();
-        $authenticated_user_data = Karyawan_Model::with('daftar_login.karyawan', 'jabatan.karyawan')->find($user->id_karyawan);
+        $authenticated_user_data = Karyawan_Model::with('daftar_login.karyawan', 'jabatan.karyawan')->find($karyawanID);
         Session::put('authenticated_user_data', $authenticated_user_data);
 
-        Session::flash('success', ['All users data reset successfully!']);
+        Session::flash('success', ['All users data (excluding me) reset successfully!']);
         return redirect()->back();
     }
 }

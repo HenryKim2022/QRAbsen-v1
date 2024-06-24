@@ -78,6 +78,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/m-emp/add', [EmployeeController::class, 'add_emp'])->name('m.emp.add');
     Route::post('/m-emp/edit', [EmployeeController::class, 'edit_emp'])->name('m.emp.edit');
     Route::post('/m-emp/delete', [EmployeeController::class, 'delete_emp'])->name('m.emp.del');
+    Route::post('/m-emp/reset', [EmployeeController::class, 'reset_emp'])->name('m.emp.reset');
+    Route::post('/m-emp/load', [EmployeeController::class, 'reset_emp'])->name('m.emp.getemp');
 });
 
 
