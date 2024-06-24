@@ -77,8 +77,7 @@
                                                     </div>
                                                 @else
                                                     <div class="d-flex align-items-center justify-content-around">
-                                                        <img src="{{ env('APP_DEFAULT_AVATAR') }}" alt="Proof 0"
-                                                            style="height: 24px; width: 24px;" class="hover-image">
+                                                        -
                                                     </div>
                                                 @endif
                                             </td>
