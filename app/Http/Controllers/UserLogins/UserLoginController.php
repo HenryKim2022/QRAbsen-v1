@@ -227,7 +227,7 @@ class UserLoginController extends Controller
                 Session::flash('n_errors', ['Err[404]: User deletion failed!']);
             }
         } else {
-            Session::flash('n_errors', ['You cannot delete the currently logged-in user!']);
+            Session::flash('n_errors', ['Err[500]: You cant delete ur own user account!']);
         }
 
         return redirect()->back();
