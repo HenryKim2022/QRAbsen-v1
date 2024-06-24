@@ -192,8 +192,12 @@ class UserLoginController extends Controller
             if ($request->input('modalEditPassword')) {
                 $user->password = bcrypt($request->input('modalEditPassword'));
             }
-
             $user->save();
+
+            $user = auth()->user();
+            $authenticated_user_data = Karyawan_Model::with('daftar_login.karyawan', 'jabatan.karyawan')->find($user->id_karyawan);
+            Session::put('authenticated_user_data', $authenticated_user_data);
+
             Session::flash('success', ['User updated successfully!']);
             return Redirect::back();
         } else {
@@ -208,6 +212,11 @@ class UserLoginController extends Controller
         $inst = DaftarLogin_Model::find($request->input('user_id'));
         if ($inst) {
             $inst->delete();
+
+            $user = auth()->user();
+            $authenticated_user_data = Karyawan_Model::with('daftar_login.karyawan', 'jabatan.karyawan')->find($user->id_karyawan);
+            Session::put('authenticated_user_data', $authenticated_user_data);
+
             Session::flash('success', ['User deletion successful!']);
         } else {
             Session::flash('errors', ['Err[404]: User deletion failed!']);
@@ -219,6 +228,11 @@ class UserLoginController extends Controller
     {
         DaftarLogin_Model::query()->delete();
         DB::statement('ALTER TABLE tb_daftar_login AUTO_INCREMENT = 1');
+
+        $user = auth()->user();
+        $authenticated_user_data = Karyawan_Model::with('daftar_login.karyawan', 'jabatan.karyawan')->find($user->id_karyawan);
+        Session::put('authenticated_user_data', $authenticated_user_data);
+
         Session::flash('success', ['All users data reset successfully!']);
         return redirect()->back();
     }

@@ -78,12 +78,19 @@ Route::middleware('auth')->group(function () {
     Route::post('/m-emp/add', [EmployeeController::class, 'add_emp'])->name('m.emp.add');
     Route::post('/m-emp/edit', [EmployeeController::class, 'edit_emp'])->name('m.emp.edit');
     Route::post('/m-emp/delete', [EmployeeController::class, 'delete_emp'])->name('m.emp.del');
-
-    Route::get('/m-emp/roles', [OfficeRoleController::class, 'index'])->name('m.emp.roles');
-    Route::post('/m-emp/roles/add', [OfficeRoleController::class, 'add_emp_roles'])->name('m.emp.roles.add');
-    Route::post('/m-emp/roles/edit', [OfficeRoleController::class, 'edit_emp_roles'])->name('m.emp.roles.edit');
-    Route::post('/m-emp/roles/delete', [OfficeRoleController::class, 'delete_emp_roles'])->name('m.emp.roles.del');
 });
+
+
+
+Route::middleware('auth')->group(function () {
+    Route::get('/m-emp/roles', [OfficeRoleController::class, 'index'])->name('m.emp.roles');
+    Route::post('/m-emp/roles/add', [OfficeRoleController::class, 'add_role'])->name('m.emp.roles.add');
+    Route::post('/m-emp/roles/edit', [OfficeRoleController::class, 'edit_role'])->name('m.emp.roles.edit');
+    Route::post('/m-emp/roles/delete', [OfficeRoleController::class, 'delete_role'])->name('m.emp.roles.del');
+    Route::post('/m-emp/roles/reset', [OfficeRoleController::class, 'reset_role'])->name('m.emp.roles.reset');
+    Route::post('/m-emp/roles/role/load', [OfficeRoleController::class, 'get_role'])->name('m.emp.roles.getrole');
+});
+
 
 
 Route::middleware('auth')->group(function () {

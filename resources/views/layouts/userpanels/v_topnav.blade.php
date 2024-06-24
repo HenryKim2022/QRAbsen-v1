@@ -92,7 +92,7 @@
                     </li>
                     <li class="scrollable-container media-list">
                         <div class="media align-items-center"><img class="d-block rounded mr-1"
-                                src="{{ 'public/vuexy/app-assets/images/pages/eCommerce/1.png' }}" alt="donuts"
+                                src="{{ asset('public/vuexy/app-assets/images/pages/eCommerce/1.png') }}" alt="donuts"
                                 width="62">
                             <div class="media-body"><i class="ficon cart-item-remove" data-feather="x"></i>
                                 <div class="media-heading">
@@ -108,7 +108,7 @@
                             </div>
                         </div>
                         <div class="media align-items-center"><img class="d-block rounded mr-1"
-                                src="{{ 'public/vuexy/app-assets/images/pages/eCommerce/7.png' }}" alt="donuts"
+                                src="{{ asset('public/vuexy/app-assets/images/pages/eCommerce/7.png') }}" alt="donuts"
                                 width="62">
                             <div class="media-body"><i class="ficon cart-item-remove" data-feather="x"></i>
                                 <div class="media-heading">
@@ -125,7 +125,7 @@
                             </div>
                         </div>
                         <div class="media align-items-center"><img class="d-block rounded mr-1"
-                                src="{{ 'public/vuexy/app-assets/images/pages/eCommerce/2.png' }}" alt="donuts"
+                                src="{{ asset('public/vuexy/app-assets/images/pages/eCommerce/2.png') }}" alt="donuts"
                                 width="62">
                             <div class="media-body"><i class="ficon cart-item-remove" data-feather="x"></i>
                                 <div class="media-heading">
@@ -142,7 +142,7 @@
                             </div>
                         </div>
                         <div class="media align-items-center"><img class="d-block rounded mr-1"
-                                src="{{ 'public/vuexy/app-assets/images/pages/eCommerce/3.png' }}" alt="donuts"
+                                src="{{ asset('public/vuexy/app-assets/images/pages/eCommerce/3.png') }}" alt="donuts"
                                 width="62">
                             <div class="media-body"><i class="ficon cart-item-remove" data-feather="x"></i>
                                 <div class="media-heading">
@@ -159,7 +159,7 @@
                             </div>
                         </div>
                         <div class="media align-items-center"><img class="d-block rounded mr-1"
-                                src="{{ 'public/vuexy/app-assets/images/pages/eCommerce/5.png' }}" alt="donuts"
+                                src="{{ asset('public/vuexy/app-assets/images/pages/eCommerce/5.png') }}" alt="donuts"
                                 width="62">
                             <div class="media-body"><i class="ficon cart-item-remove" data-feather="x"></i>
                                 <div class="media-heading">
@@ -198,7 +198,7 @@
                             <div class="media d-flex align-items-start">
                                 <div class="media-left">
                                     <div class="avatar"><img
-                                            src="{{ 'public/vuexy/app-assets/images/portrait/small/avatar-s-15.jpg' }}"
+                                            src="{{ asset('public/vuexy/app-assets/images/portrait/small/avatar-s-15.jpg') }}"
                                             alt="avatar" width="32" height="32"></div>
                                 </div>
                                 <div class="media-body">
@@ -211,7 +211,7 @@
                             <div class="media d-flex align-items-start">
                                 <div class="media-left">
                                     <div class="avatar"><img
-                                            src="{{ 'public/vuexy/app-assets/images/portrait/small/avatar-s-3.jpg' }}"
+                                            src="{{ asset('public/vuexy/app-assets/images/portrait/small/avatar-s-3.jpg') }}"
                                             alt="avatar" width="32" height="32"></div>
                                 </div>
                                 <div class="media-body">
@@ -285,8 +285,11 @@
                             {{-- {{ $authenticated_user_data->daftar_login->type ?: 'The Only One :)' }} --}}
                             {{ $authenticated_user_data->daftar_login ? $authenticated_user_data->daftar_login->type : ($authenticated_user_data->daftar_login_4get ? $authenticated_user_data->daftar_login_4get->type : '') }}
                         </span>
+
+
                     </div><span class="avatar"><img class="round"
-                            src="{{ $authenticated_user_data->foto_karyawan === null ? env('APP_DEFAULT_AVATAR') : 'public/avatar/uploads/' . $authenticated_user_data->foto_karyawan }}"
+                            {{-- src="{{ $authenticated_user_data->foto_karyawan === null ? env('APP_DEFAULT_AVATAR') : 'public/avatar/uploads/' . $authenticated_user_data->foto_karyawan }}" --}}
+                            src="{{ $avatar_src }}"
                             alt="avatar" height="40" width="40"><span
                             class="avatar-status-online"></span></span>
 
@@ -323,7 +326,7 @@
     <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between w-100"
             href="app-file-manager.html">
             <div class="d-flex">
-                <div class="mr-75"><img src="{{ 'public/vuexy/app-assets/images/icons/xls.png' }}" alt="png"
+                <div class="mr-75"><img src="{{ asset('public/vuexy/app-assets/images/icons/xls.png') }}" alt="png"
                         height="32"></div>
                 <div class="search-data">
                     <p class="search-data-title mb-0">Two new item submitted</p><small class="text-muted">Marketing
@@ -334,7 +337,7 @@
     <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between w-100"
             href="app-file-manager.html">
             <div class="d-flex">
-                <div class="mr-75"><img src="{{ 'public/vuexy/app-assets/images/icons/jpg.png' }}" alt="png"
+                <div class="mr-75"><img src="{{ asset('public/vuexy/app-assets/images/icons/jpg.png') }}" alt="png"
                         height="32"></div>
                 <div class="search-data">
                     <p class="search-data-title mb-0">52 JPG file Generated</p><small class="text-muted">FontEnd
@@ -345,7 +348,7 @@
     <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between w-100"
             href="app-file-manager.html">
             <div class="d-flex">
-                <div class="mr-75"><img src="{{ 'public/vuexy/app-assets/images/icons/pdf.png' }}" alt="png"
+                <div class="mr-75"><img src="{{ asset('public/vuexy/app-assets/images/icons/pdf.png') }}" alt="png"
                         height="32"></div>
                 <div class="search-data">
                     <p class="search-data-title mb-0">25 PDF File Uploaded</p><small class="text-muted">Digital
@@ -356,7 +359,7 @@
     <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between w-100"
             href="app-file-manager.html">
             <div class="d-flex">
-                <div class="mr-75"><img src="{{ 'public/vuexy/app-assets/images/icons/doc.png' }}" alt="png"
+                <div class="mr-75"><img src="{{ asset('public/vuexy/app-assets/images/icons/doc.png') }}" alt="png"
                         height="32"></div>
                 <div class="search-data">
                     <p class="search-data-title mb-0">Anna_Strong.doc</p><small class="text-muted">Web
@@ -371,7 +374,7 @@
             href="app-user-view.html">
             <div class="d-flex align-items-center">
                 <div class="avatar mr-75"><img
-                        src="{{ 'public/vuexy/app-assets/images/portrait/small/avatar-s-8.jpg' }}" alt="png"
+                        src="{{ asset('public/vuexy/app-assets/images/portrait/small/avatar-s-8.jpg') }}" alt="png"
                         height="32"></div>
                 <div class="search-data">
                     <p class="search-data-title mb-0">John Doe</p><small class="text-muted">UI designer</small>
@@ -382,7 +385,7 @@
             href="app-user-view.html">
             <div class="d-flex align-items-center">
                 <div class="avatar mr-75"><img
-                        src="{{ 'public/vuexy/app-assets/images/portrait/small/avatar-s-1.jpg' }}" alt="png"
+                        src="{{ asset('public/vuexy/app-assets/images/portrait/small/avatar-s-1.jpg') }}" alt="png"
                         height="32"></div>
                 <div class="search-data">
                     <p class="search-data-title mb-0">Michal Clark</p><small class="text-muted">FontEnd
@@ -394,7 +397,7 @@
             href="app-user-view.html">
             <div class="d-flex align-items-center">
                 <div class="avatar mr-75"><img
-                        src="{{ 'public/vuexy/app-assets/images/portrait/small/avatar-s-14.jpg' }}" alt="png"
+                        src="{{ asset('public/vuexy/app-assets/images/portrait/small/avatar-s-14.jpg') }}" alt="png"
                         height="32"></div>
                 <div class="search-data">
                     <p class="search-data-title mb-0">Milena Gibson</p><small class="text-muted">Digital Marketing
@@ -406,7 +409,7 @@
             href="app-user-view.html">
             <div class="d-flex align-items-center">
                 <div class="avatar mr-75"><img
-                        src="{{ 'public/vuexy/app-assets/images/portrait/small/avatar-s-6.jpg' }}" alt="png"
+                        src="{{ asset('public/vuexy/app-assets/images/portrait/small/avatar-s-6.jpg') }}" alt="png"
                         height="32"></div>
                 <div class="search-data">
                     <p class="search-data-title mb-0">Anna Strong</p><small class="text-muted">Web Designer</small>
