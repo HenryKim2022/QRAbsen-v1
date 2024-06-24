@@ -161,9 +161,7 @@ class OfficeRoleController extends Controller
         if ($jab) {
             $jab->na_jabatan = $request->input('role_name');
             $id_karyawan = $request->input('role-karyawan-id');
-            if ($id_karyawan) {
-                $jab->id_karyawan = $id_karyawan;
-            }
+            $jab->id_karyawan = $id_karyawan;
             $jab->save();
 
             $user = auth()->user();
