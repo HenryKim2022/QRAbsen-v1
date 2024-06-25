@@ -194,8 +194,10 @@ class UserPanelController extends Controller
             Storage::putFileAs('public/absen/proof', $file, $filename);
             $proof_path = asset(env(key: 'APP_URL')) . '/public/storage/absen/proof/' . $filename;
 
+
             $karyawan = Karyawan_Model::find($id_karyawan);
             if ($karyawan) {
+                $karyawan->bukti = $proof_path;
                 $lastAddedAbsen = $karyawan->absen()->latest()->first();    // Find the last added Absen_Model record for the $karyawan
                 if ($lastAddedAbsen) {
                     $lastCheckout = $lastAddedAbsen->checkout;  //Access the current checkout in DB (optional)
