@@ -36,7 +36,8 @@
                 <div class="col-lg-4 col-md-6 col-12">
                     <div class="card card-developer-meetup">
                         <div class="meetup-img-wrapper rounded-top text-center">
-                            <div class="placeholder-text text-muted">ScanQR to Check-in</div>
+                            {{-- <div class="placeholder-text text-muted">ScanQR to Check-in</div> --}}
+                            <div class="placeholder-text text-muted">For Check-in</div>
                         </div>
                         <div class="card-body">
                             <div class="media">
@@ -55,8 +56,11 @@
                             <div class="avatar-group h-auto w-auto d-flex align-items-center justify-content-center">
                                 <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom"
                                     data-original-title="ScanMe :)" class="pull-up">
-                                    <img class="img-fluid rounded-0 hover-qr-image"
-                                        src="data:image/png;base64,{{ $checkInQRCode }}" alt="QR Image">
+                                    {{-- <img class="img-fluid rounded-0 hover-qr-image"
+                                        src="data:image/png;base64,{{ $checkInQRCode }}" alt="QR Image"> --}}
+                                        <a href="{{ $checkInQRCode }}">
+                                            <button class="btn btn-sm btn-danger"> Check In </button>
+                                        </a>
                                 </div>
                             </div>
                         </div>
@@ -109,7 +113,6 @@
 
 
                                 @media (min-width: 768px) {
-
                                     /* Styles for desktops */
                                     .AppMain-img-container {
                                         top: -10.04rem;
@@ -205,7 +208,8 @@
                 <div class="col-lg-4 col-md-6 col-12">
                     <div class="card card-developer-meetup">
                         <div class="meetup-img-wrapper rounded-top text-center">
-                            <div class="placeholder-text text-muted">ScanQR to Check-out</div>
+                            {{-- <div class="placeholder-text text-muted">ScanQR to Check-out</div> --}}
+                            <div class="placeholder-text text-muted">For Check-out</div>
                         </div>
                         <div class="card-body">
                             <div class="media">
@@ -224,8 +228,11 @@
                             <div class="avatar-group h-auto w-auto d-flex align-items-center justify-content-center">
                                 <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom"
                                     data-original-title="ScanMe :)" class="pull-up">
-                                    <img class="img-fluid rounded-0 hover-qr-image"
-                                        src="data:image/png;base64,{{ $checkOutQRCode }}" alt="QR Image">
+                                    {{-- <img class="img-fluid rounded-0 hover-qr-image"
+                                        src="data:image/png;base64,{{ $checkOutQRCode }}" alt="QR Image"> --}}
+                                        <a href="{{ $checkOutQRCode }}">
+                                            <button class="btn btn-sm btn-danger"> Check In </button>
+                                        </a>
                                 </div>
                             </div>
                         </div>

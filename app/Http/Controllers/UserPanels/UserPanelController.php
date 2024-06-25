@@ -31,8 +31,10 @@ class UserPanelController extends Controller
             // dd($absenInUrl, $absenOutUrl);
 
             $data = [
-                'checkInQRCode' => base64_encode($this->genQR($absenInUrl, 144)),
-                'checkOutQRCode' => base64_encode($this->genQR($absenOutUrl, 144)),
+                // 'checkInQRCode' => base64_encode($this->genQR($absenInUrl, 144)),
+                // 'checkOutQRCode' => base64_encode($this->genQR($absenOutUrl, 144)),
+                'checkInQRCode' => env('APP_URL') . '/dashboard/' . $absenInUrl,
+                'checkOutQRCode' => env('APP_URL') . '/dashboard/' . $absenOutUrl,
                 'site_name' => TheApp_Model::where('na_setting', 'CompanyName')->withoutTrashed()->first(),
                 'site_year' => TheApp_Model::where('na_setting', 'SiteCopyrightYear')->withoutTrashed()->first(),
                 'aboutus_data' => TheApp_Model::where('na_setting', 'AboutUSText')->withoutTrashed()->first(),
