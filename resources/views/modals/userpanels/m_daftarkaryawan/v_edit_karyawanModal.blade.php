@@ -9,30 +9,137 @@
                  </button>
              </div>
              <div class="modal-body">
-                 <form class="row g-2 needs-validation mt-1" method="POST" action="{{ route('m.emp.roles.edit') }}" id="edit_karyawanModalFORM"
+                 <form class="row g-2 needs-validation mt-1" method="POST" action="{{ route('m.emp.getemp') }}" id="edit_karyawanModalFORM"
                      novalidate>
                      @csrf
-                     <input type="hidden" id="jabatan_id" name="jabatan_id" value="" />
-                     <input type="hidden" id="karyawan_id" name="karyawan_id" value="" />
-                     <div class="col-xl-6 col-md-6 col-12 pr-sm-1 pr-md-1 pr-lg-0 pr-xl-0">
-                        <div class="form-group mb-0">
-                            <label>Employee</label>
-                            <select class="select2 form-control form-control-lg" name="edit-role-karyawan-id" id="edit-role-karyawan-id">
-                                <option value="">Select Employee</option>
-                                {{-- @foreach($employee_list as $employee)
-                                    <option value="{{ $employee->id_karyawan }}">
-                                        {{ $employee->na_karyawan }}
-                                    </option>
-                                @endforeach --}}
+                     <input type="text" id="edit_karyawan_id" name="edit_karyawan_id" value="" />
+                     <div class="col-xl-6 col-md-6 col-12">
+                        <div class="form-group">
+                            <label class="form-label" for="edit-emp-name">Employee Name</label>
+                            <input class="form-control form-control-merge" id="edit-emp-name" name="edit-emp-name"
+                                placeholder="Employee Name" aria-describedby="edit-emp-name" tabindex="1"></input>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-md-6 col-12">
+                        <div class="form-group">
+                            <label>Religion</label>
+                            <select class="select2 form-control form-control-lg"
+                                name="edit-emp-religion" id="edit-emp-religion">
+                                @php
+                                    $religion = $authenticated_user_data->agama_karyawan;
+                                @endphp
+                                <option value=""
+                                    {{ !$religion ? 'selected' : '' }}>
+                                    Select religion</option>
+                                <option value="Islam"
+                                    {{ $religion == 'Islam' ? 'selected' : '' }}>
+                                    Islam</option>
+                                <option value="Kristen"
+                                    {{ $religion == 'Kristen' ? 'selected' : '' }}>
+                                    Kristen</option>
+                                <option value="Hindu"
+                                    {{ $religion == 'Hindu' ? 'selected' : '' }}>
+                                    Hindu</option>
+                                <option value="Buddha"
+                                    {{ $religion == 'Buddha' ? 'selected' : '' }}>
+                                    Buddha</option>
+                                <option value="Konghucu"
+                                    {{ $religion == 'Konghucu' ? 'selected' : '' }}>
+                                    Konghucu</option>
                             </select>
+                        </div>
+                    </div>
+                    <div class="col-xl-12 col-md-12 col-12">
+                        <div class="form-group">
+                            <label class="form-label" for="edit-emp-addr">Address</label>
+                            <input class="form-control form-control-merge" id="edit-emp-addr" name="edit-emp-addr"
+                                placeholder="Address" aria-describedby="edit-emp-addr" tabindex="2"></input>
                         </div>
                     </div>
 
                     <div class="col-xl-6 col-md-6 col-12">
                         <div class="form-group">
-                            <label class="form-label" for="role_name">RoleName</label>
-                            <input class="form-control form-control-merge" id="role_name" name="role_name"
-                                placeholder="e.g. Office Boy 1" aria-describedby="role_name" tabindex="4"></input>
+                            <label class="form-label" for="edit-emp-telp">No. Telp</label>
+                            <input class="form-control form-control-merge" id="edit-emp-telp" name="edit-emp-telp"
+                                placeholder="No. Telp" aria-describedby="edit-emp-telp" tabindex="3"></input>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-6 col-md-6 col-12">
+                        <div class="media">
+                            <a href="javascript:void(0);" class="mr-25 p-1 rounded">
+                                <img
+                                src="{{ env('APP_NOIMAGE') }}"
+                                {{-- src="{{ $authenticated_user_data->foto_karyawan == null ? env('APP_DEFAULT_AVATAR') : 'public/avatar/uploads/' . $authenticated_user_data->foto_karyawan }}" --}}
+                                    id="avatar-upload-img" class="rounded hover-qr-image" alt="profile image"
+                                    height="80" width="80" />
+                            </a>
+                            <!-- upload and reset button -->
+                            <div class="media-body mt-75 ml-1">
+                                <label for="edit-avatar-upload"
+                                    class="btn btn-sm btn-primary mb-75 mr-75">Browse</label>
+                                <input type="file" id="edit-avatar-upload" name="edit-avatar-upload" hidden
+                                    accept="image/png, image/jpeg, image/*" />
+                                <button
+                                    class="btn btn-sm acc-avatar-reset btn-outline-secondary mb-75">Reset</button>
+                                <p>Allowed JPG, GIF or PNG. Max size of 5MB</p>
+                            </div>
+                            <!--/ upload and reset button -->
+                        </div>
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                const uploadedAvatar = document.getElementById('avatar-upload-img');
+                                const uploadInput = document.getElementById('avatar-upload');
+                                uploadInput.addEventListener('change', function() {
+                                    const file = uploadInput.files[0];
+                                    const reader = new FileReader();
+                                    reader.onload = function(e) {
+                                        const uploadedImage = e.target.result;
+                                        uploadedAvatar.src = uploadedImage;
+                                    };
+                                    reader.readAsDataURL(file);
+                                });
+
+                                var userProfilePhotoPreview = uploadedAvatar;
+                                var userProfilePhotoInput = uploadInput;
+                                userProfilePhotoInput.addEventListener('change', function() {
+                                    const file = this.files[0];
+                                    if (file && file.type.startsWith('image/')) {
+                                        const img = document.createElement('img');
+                                        img.src = URL.createObjectURL(file);
+
+                                        img.onload = function() {
+                                            userProfilePhotoPreview.src = img.src;
+                                        };
+                                    }
+                                });
+                                var resetButton = document.querySelector('.acc-avatar-reset');
+                                resetButton.addEventListener('click', function(e) {
+                                    e.preventDefault();
+                                    userProfilePhotoPreview.src =
+                                        // '{{ $authenticated_user_data->foto_karyawan == null ? env('APP_DEFAULT_AVATAR') : 'public/avatar/uploads/' . $authenticated_user_data->foto_karyawan }}';
+                                        '{{env('APP_NOIMAGE')}}';
+                                    userProfilePhotoInput.value = null;
+                                });
+                            });
+                        </script>
+                        <!--/ header media -->
+                    </div>
+
+
+                    <div class="col-xl-6 col-md-6 col-12">
+                        <div class="form-group">
+                            <label class="form-label" for="edit-emp-bday-place">Birth-Place</label>
+                            <input class="form-control form-control-merge phone-number-mask" id="edit-emp-bday-place" name="edit-emp-bday-place"
+                                placeholder="Birth Place" aria-describedby="edit-emp-bday-place" tabindex="3"></input>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-md-6 col-12">
+                        <div class="form-group">
+                            <label for="edit-emp-birth-date">Birth-Date</label>
+                            <input type="date" class="form-control" id="edit-emp-birth-date"
+                                name="edit-emp-birth-date" placeholder="Date of Birth"
+                                value="1999-01-01" />
                         </div>
                     </div>
 

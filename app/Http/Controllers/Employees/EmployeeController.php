@@ -56,13 +56,7 @@ class EmployeeController extends Controller
 
 
 
-    //         emp-name
-    // emp-addr
-    // emp-telp
-    // avatar-upload
 
-    // emp-bday-place
-    // emp-brith-date
     public function add_emp(Request $request)
     {
         $validator = Validator::make(

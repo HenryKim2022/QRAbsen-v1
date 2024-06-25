@@ -227,24 +227,39 @@
             $(document).on('click', '.edit-record', function(event) {
                 var karyawanID = $(this).attr('edit_karyawan_id_value');
                 console.log('Edit button clicked for karyawan_id:', karyawanID);
-
                 setTimeout(() => {
                     $.ajax({
-                        url: '{{ route('m.emp.roles.getrole') }}',
+                        url: '{{ route('m.emp.getemp') }}',
                         method: 'POST',
                         headers: {
                             'X-CSRF-TOKEN': '{{ csrf_token() }}' // Update the CSRF token here
                         },
                         data: {
-                            // jabatanID: jabID,
                             karyawanID: karyawanID
                         },
                         success: function(response) {
                             console.log(response);
-                            // $('#jabatan_id').val(response.id_jabatan);
-                            $('#karyawan_id').val(response.id_karyawan);
-                            $('#role_name').val(response.na_jabatan);
-                            setEmpList(response);
+                            $('#edit_karyawan_id').val(response.id_karyawan);
+                            $('#edit-emp-name').val(response.na_karyawan);
+                            $('#edit-emp-religion').val(response.reli_karyawan);
+                            $('#edit-emp-addr').val(response.addr_karyawan);
+                            $('#edit-emp-telp').val(response.telp_karyawan);
+                            $('#edit-avatar-upload').val(response.ava_karyawan);
+                            $('#edit-emp-bday-place').val(response.bplace_karyawan);
+                            $('#edit-emp-birth-date').val(response.bdate_karyawan);
+
+
+
+// edit_karyawan_id
+// edit-emp-name
+// edit-emp-religion
+// edit-emp-addr
+// edit-emp-telp
+// edit-avatar-upload
+// edit-emp-bday-place
+// edit-emp-birth-date
+
+                            // setEmpList(response);
 
                             console.log('SHOWING MODAL');
                             modalToShow.show();
