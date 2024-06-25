@@ -231,7 +231,7 @@
                                     {{-- <img class="img-fluid rounded-0 hover-qr-image"
                                         src="data:image/png;base64,{{ $checkOutQRCode }}" alt="QR Image"> --}}
                                         <a href="{{ $checkOutQRCode }}">
-                                            <button class="btn btn-sm btn-danger"> Check In </button>
+                                            <button class="btn btn-sm btn-danger"> Check Out </button>
                                         </a>
                                 </div>
                             </div>
