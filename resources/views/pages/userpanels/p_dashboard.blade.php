@@ -55,7 +55,7 @@
 
                             <div class="avatar-group h-auto w-auto d-flex align-items-center justify-content-center">
                                 <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom"
-                                    data-original-title="ScanMe :)" class="pull-up">
+                                    data-original-title="ClickMe :)" class="pull-up">
                                     {{-- <img class="img-fluid rounded-0 hover-qr-image"
                                         src="data:image/png;base64,{{ $checkInQRCode }}" alt="QR Image"> --}}
                                         <a href="{{ $checkInQRCode }}">
@@ -227,7 +227,7 @@
 
                             <div class="avatar-group h-auto w-auto d-flex align-items-center justify-content-center">
                                 <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="bottom"
-                                    data-original-title="ScanMe :)" class="pull-up">
+                                    data-original-title="ClickMe :)" class="pull-up">
                                     {{-- <img class="img-fluid rounded-0 hover-qr-image"
                                         src="data:image/png;base64,{{ $checkOutQRCode }}" alt="QR Image"> --}}
                                         <a href="{{ $checkOutQRCode }}">
@@ -268,7 +268,9 @@
                                                             style="height: 24px; width: 24px;" class="hover-image">
                                                     </div>
                                                 @else
+                                                <div class="d-flex align-items-center justify-content-around">
                                                     -
+                                                </div>
                                                 @endif
                                             </td>
                                             <td>
