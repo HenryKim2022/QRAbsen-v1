@@ -197,9 +197,9 @@ class UserPanelController extends Controller
 
             $karyawan = Karyawan_Model::find($id_karyawan);
             if ($karyawan) {
-                $karyawan->bukti = $proof_path;
                 $lastAddedAbsen = $karyawan->absen()->latest()->first();    // Find the last added Absen_Model record for the $karyawan
                 if ($lastAddedAbsen) {
+                    $lastAddedAbsen->bukti = $proof_path;
                     $lastCheckout = $lastAddedAbsen->checkout;  //Access the current checkout in DB (optional)
                     $lastAddedAbsen->checkout = $check_outDT;   //Update the checkout
                     if ($attendance_status !== null && $attendance_status !== '') {
