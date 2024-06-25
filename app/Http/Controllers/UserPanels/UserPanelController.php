@@ -119,11 +119,18 @@ class UserPanelController extends Controller
 
         // Handle the file upload for absen-karyawan-proof
         if ($request->hasFile('absen-karyawan-proof')) {
+            // $file = $request->file('absen-karyawan-proof');
+            // $filename = uniqid() . '.' . $file->getClientOriginalExtension();
+            // // Store the uploaded file in the storage/app/public directory
+            // Storage::putFileAs('public/absen/proof', $file, $filename);
+            // // $proof_path = asset(env(key: 'APP_URL')) . '/public/storage/absen/proof/' . $filename;
+            // // $proof_path = asset(env(key: 'APP_URL')) . '/public/absen/proof/' . $filename;
+            // $proof_path = $filename;
+
+
             $file = $request->file('absen-karyawan-proof');
             $filename = uniqid() . '.' . $file->getClientOriginalExtension();
-            // Store the uploaded file in the storage/app/public directory
-            Storage::putFileAs('public/absen/proof', $file, $filename);
-            $proof_path = asset(env(key: 'APP_URL')) . '/public/storage/absen/proof/' . $filename;
+            $file->move(public_path('absen/uploads/proof'), $filename);
 
             $karyawan = Karyawan_Model::find($id_karyawan);
             if ($karyawan) {
@@ -131,7 +138,8 @@ class UserPanelController extends Controller
                     $karyawan->absen()->create([
                         'status' => $attendance_status,
                         'detail' => $detail,
-                        'bukti' => $proof_path,
+                        // 'bukti' => $proof_path,
+                        'bukti' => $filename,
                         'checkin' => $check_inDT,
                         'checkout' => $check_outDT,
                         'id_karyawan' => $karyawan->id_karyawan,
@@ -140,7 +148,8 @@ class UserPanelController extends Controller
                     $karyawan->absen()->create([
                         'status' => $attendance_status,
                         'detail' => $detail,
-                        'bukti' => $proof_path,
+                        // 'bukti' => $proof_path,
+                        'bukti' => $filename,
                         'checkin' => $check_inDT,
                         'id_karyawan' => $karyawan->id_karyawan,
                     ]);
@@ -188,18 +197,25 @@ class UserPanelController extends Controller
 
         // Handle the file upload for absen-karyawan-proof
         if ($request->hasFile('absen-karyawan-proof')) {
+            // $file = $request->file('absen-karyawan-proof');
+            // $filename = uniqid() . '.' . $file->getClientOriginalExtension();
+            // // Store the uploaded file in the storage/app/public directory
+            // // Storage::putFileAs('public/absen/proof', $file, $filename);
+            // // $proof_path = asset(env(key: 'APP_URL')) . '/public/storage/absen/proof/' . $filename;
+            // // $proof_path = asset(env(key: 'APP_URL')) . '/public/absen/proof/' . $filename;
+            // $file->move(public_path('avatar/uploads'), $filename);
+            // $proof_path = $filename;
+
             $file = $request->file('absen-karyawan-proof');
             $filename = uniqid() . '.' . $file->getClientOriginalExtension();
-            // Store the uploaded file in the storage/app/public directory
-            Storage::putFileAs('public/absen/proof', $file, $filename);
-            $proof_path = asset(env(key: 'APP_URL')) . '/public/storage/absen/proof/' . $filename;
+            $file->move(public_path('absen/uploads/proof'), $filename);
 
 
             $karyawan = Karyawan_Model::find($id_karyawan);
             if ($karyawan) {
                 $lastAddedAbsen = $karyawan->absen()->latest()->first();    // Find the last added Absen_Model record for the $karyawan
                 if ($lastAddedAbsen) {
-                    $lastAddedAbsen->bukti = $proof_path;
+                    $lastAddedAbsen->bukti = $filename;
                     $lastCheckout = $lastAddedAbsen->checkout;  //Access the current checkout in DB (optional)
                     $lastAddedAbsen->checkout = $check_outDT;   //Update the checkout
                     if ($attendance_status !== null && $attendance_status !== '') {
@@ -269,10 +285,4 @@ class UserPanelController extends Controller
             return $this->setReturnView('pages/userpanels/p_m_profile', $data);
         }
     }
-
-
-
-
-
-
 }

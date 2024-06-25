@@ -144,13 +144,20 @@ class AbsenController extends Controller
             $absen->id_karyawan = $id_karyawan;
             // Handle the file upload for absen-karyawan-proof
             if ($request->hasFile('absen-karyawan-proof')) {
+                // $file = $request->file('absen-karyawan-proof');
+                // $filename = uniqid() . '.' . $file->getClientOriginalExtension();
+                // // Store the uploaded file in the storage/app/public directory
+                // Storage::putFileAs('public/absen/proof', $file, $filename);
+                // $proof_path = asset(env(key: 'APP_URL')) . '/public/storage/absen/proof/' . $filename;
+                // $absen->bukti = $proof_path;
+
+
                 $file = $request->file('absen-karyawan-proof');
                 $filename = uniqid() . '.' . $file->getClientOriginalExtension();
-                // Store the uploaded file in the storage/app/public directory
-                Storage::putFileAs('public/absen/proof', $file, $filename);
-                $proof_path = asset(env(key: 'APP_URL')) . '/public/storage/absen/proof/' . $filename;
+                $file->move(public_path('absen/uploads/proof'), $filename);
+                $absen->bukti = $filename;
 
-                $absen->bukti = $proof_path;
+
                 $karyawan = Karyawan_Model::find($id_karyawan);
                 if ($karyawan) {
                     if ($attendance_status === 3 || $attendance_status === 4) {
@@ -204,16 +211,21 @@ class AbsenController extends Controller
 
             // Handle the file upload for absen-karyawan-proof
             if ($request->hasFile('absen-karyawan-proof')) {
+                // $file = $request->file('absen-karyawan-proof');
+                // $filename = uniqid() . '.' . $file->getClientOriginalExtension();
+                // // Store the uploaded file in the storage/app/public directory
+                // Storage::putFileAs('public/absen/proof', $file, $filename);
+                // $proof_path = asset(env(key: 'APP_URL')) . '/public/storage/absen/proof/' . $filename;
+
                 $file = $request->file('absen-karyawan-proof');
                 $filename = uniqid() . '.' . $file->getClientOriginalExtension();
-                // Store the uploaded file in the storage/app/public directory
-                Storage::putFileAs('public/absen/proof', $file, $filename);
-                $proof_path = asset(env(key: 'APP_URL')) . '/public/storage/absen/proof/' . $filename;
+                $file->move(public_path('absen/uploads/proof'), $filename);
 
                 $karyawan = Karyawan_Model::find($id_karyawan);
                 if ($karyawan) {
                     $lastAddedAbsen = $karyawan->absen()->latest()->first();    // Find the last added Absen_Model record for the $karyawan
                     if ($lastAddedAbsen) {
+                        $lastAddedAbsen->bukti = $filename;
                         $lastCheckout = $lastAddedAbsen->checkout;  //Access the current checkout in DB (optional)
                         $lastAddedAbsen->checkout = date('Y-m-d H:i:s');   //Update the checkout
                         if ($attendance_status !== null && $attendance_status !== '') {
@@ -272,30 +284,45 @@ class AbsenController extends Controller
 
     public function add_absen(Request $request)
     {
-        $attendance_action = $request->input('attendance-action');
-        if ($attendance_action === 1) {          // IF Check-in
+         $attendance_action = $request->input('attendance-action');
+        // dd($attendance_action);
+        if ($attendance_action === '1') {          // IF Check-in
             $this->doingCheckIn($request);
-        } else if ($attendance_action === 2) {   // IF Check-out
+        } else if ($attendance_action === '2') {   // IF Check-out
             $this->doingCheckOut($request);
         }
         return redirect()->back();
     }
 
+
+
     public function doingCheckIn(Request $request)
     {
-        $id_karyawan = $request->input('absen-karyawan-id');
+        $id_karyawan = $request->input('absen-in-karyawan-id');
+        // dd($id_karyawan);
         $attendance_status = $request->input('attendance-status');
+        // dd($attendance_status);
         $detail = $request->input('absen-karyawan-reason');
+        // dd($detail);
         $check_inDT = date('Y-m-d H:i:s');
         $check_outDT = date('Y-m-d H:i:s');
 
+        // dd($id_karyawan);
+
         // Handle the file upload for absen-karyawan-proof
         if ($request->hasFile('absen-karyawan-proof')) {
+            // $file = $request->file('absen-karyawan-proof');
+            // $filename = uniqid() . '.' . $file->getClientOriginalExtension();
+            // // Store the uploaded file in the storage/app/public directory
+            // Storage::putFileAs('public/absen/proof', $file, $filename);
+            // $proof_path = asset(env(key: 'APP_URL')) . '/public/storage/absen/proof/' . $filename;
+
+
+
             $file = $request->file('absen-karyawan-proof');
             $filename = uniqid() . '.' . $file->getClientOriginalExtension();
-            // Store the uploaded file in the storage/app/public directory
-            Storage::putFileAs('public/absen/proof', $file, $filename);
-            $proof_path = asset(env(key: 'APP_URL')) . '/public/storage/absen/proof/' . $filename;
+            $file->move(public_path('absen/uploads/proof'), $filename);
+
 
             $karyawan = Karyawan_Model::find($id_karyawan);
             if ($karyawan) {
@@ -303,7 +330,7 @@ class AbsenController extends Controller
                     $karyawan->absen()->create([
                         'status' => $attendance_status,
                         'detail' => $detail,
-                        'bukti' => $proof_path,
+                        'bukti' => $filename,
                         'checkin' => $check_inDT,
                         'checkout' => $check_outDT,
                         'id_karyawan' => $karyawan->id_karyawan,
@@ -312,7 +339,7 @@ class AbsenController extends Controller
                     $karyawan->absen()->create([
                         'status' => $attendance_status,
                         'detail' => $detail,
-                        'bukti' => $proof_path,
+                        'bukti' => $filename,
                         'checkin' => $check_inDT,
                         'id_karyawan' => $karyawan->id_karyawan,
                     ]);
@@ -359,16 +386,23 @@ class AbsenController extends Controller
 
         // Handle the file upload for absen-karyawan-proof
         if ($request->hasFile('absen-karyawan-proof')) {
+            // $file = $request->file('absen-karyawan-proof');
+            // $filename = uniqid() . '.' . $file->getClientOriginalExtension();
+            // // Store the uploaded file in the storage/app/public directory
+            // Storage::putFileAs('public/absen/proof', $file, $filename);
+            // $proof_path = asset(env(key: 'APP_URL')) . '/public/storage/absen/proof/' . $filename;
+
+
             $file = $request->file('absen-karyawan-proof');
             $filename = uniqid() . '.' . $file->getClientOriginalExtension();
-            // Store the uploaded file in the storage/app/public directory
-            Storage::putFileAs('public/absen/proof', $file, $filename);
-            $proof_path = asset(env(key: 'APP_URL')) . '/public/storage/absen/proof/' . $filename;
+            $file->move(public_path('absen/uploads/proof'), $filename);
+
 
             $karyawan = Karyawan_Model::find($id_karyawan);
             if ($karyawan) {
                 $lastAddedAbsen = $karyawan->absen()->latest()->first();    // Find the last added Absen_Model record for the $karyawan
                 if ($lastAddedAbsen) {
+                    $lastAddedAbsen->bukti = $filename;
                     $lastCheckout = $lastAddedAbsen->checkout;  //Access the current checkout in DB (optional)
                     $lastAddedAbsen->checkout = $check_outDT;   //Update the checkout
                     if ($attendance_status !== null && $attendance_status !== '') {

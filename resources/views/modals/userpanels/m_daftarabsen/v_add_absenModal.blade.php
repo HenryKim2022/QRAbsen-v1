@@ -21,7 +21,7 @@
                         <div class="col-xl-6 col-md-6 col-12 pr-0">
                             <div class="form-group mb-0">
                                 <label>Employee</label>
-                                <select class="select2 form-control form-control-lg" name="absen-karyawan-id" id="absen-karyawan-id">
+                                <select class="select2 form-control form-control-lg" name="absen-in-karyawan-id" id="absen-in-karyawan-id">
                                     <option value="">Select Employee</option>
                                     @foreach($employee_list as $employee)
                                         <option value="{{ $employee->id_karyawan }}">

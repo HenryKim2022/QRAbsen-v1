@@ -264,7 +264,7 @@
                                             <td>
                                                 @if ($absen->bukti)
                                                     <div class="d-flex align-items-center justify-content-around">
-                                                        <img src="{{ $absen->bukti }}" alt="Proof 0"
+                                                        <img src="{{ asset('public/absen/uploads/proof/' . $absen->bukti) }}" alt="Proof 0"
                                                             style="height: 24px; width: 24px;" class="hover-image">
                                                     </div>
                                                 @else

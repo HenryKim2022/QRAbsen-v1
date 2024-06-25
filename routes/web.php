@@ -103,6 +103,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/m-absen/delete', [AbsenController::class, 'delete_absen'])->name('m.absen.del');
     Route::post('/m-absen/reset', [AbsenController::class, 'reset_absen'])->name('m.absen.reset');
     Route::post('/m-absen/abs/load', [AbsenController::class, 'get_absen'])->name('m.absen.getabsen');
+    // Route::get('/m-absen/add', [AbsenController::class, 'add_absen'])->name('m.absen.add');
 });
 
 
