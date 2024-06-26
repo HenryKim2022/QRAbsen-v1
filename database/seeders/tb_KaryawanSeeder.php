@@ -26,7 +26,7 @@ class tb_KaryawanSeeder extends Seeder
                 'na_karyawan' => 'Jane Smith',
                 'tlah_karyawan' => 'Town',
                 'tglah_karyawan' => '1992-05-10',
-                'agama_karyawan' => 'Christian',
+                'agama_karyawan' => 'Kristen',
                 'alamat_karyawan' => '456 Elm St',
                 'notelp_karyawan' => '987654321',
                 'foto_karyawan' => null

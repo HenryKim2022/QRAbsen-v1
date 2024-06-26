@@ -298,7 +298,7 @@ class AbsenController extends Controller
 
     public function doingCheckIn(Request $request)
     {
-        $id_karyawan = $request->input('absen-in-karyawan-id');
+        $id_karyawan = $request->input('absen-in-out-karyawan-id');
         // dd($id_karyawan);
         $attendance_status = $request->input('attendance-status');
         // dd($attendance_status);

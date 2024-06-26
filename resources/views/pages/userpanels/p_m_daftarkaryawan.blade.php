@@ -12,10 +12,12 @@
             background-color: #30334e;
             border: 1px solid rgba(20, 21, 33, 0.175);
         }
+
         .dark-layout .media.mr-25.p-1.rounded {
             background-color: #ffffff;
             border: 1px solid rgba(20, 21, 33, 0.175);
         }
+
         .light-layout .media.mr-25.p-1.rounded {
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             border: 1px solid rgba(20, 21, 33, 0.175);
@@ -241,26 +243,14 @@
                             console.log(response);
                             $('#edit_karyawan_id').val(response.id_karyawan);
                             $('#edit-emp-name').val(response.na_karyawan);
-                            $('#edit-emp-religion').val(response.reli_karyawan);
                             $('#edit-emp-addr').val(response.addr_karyawan);
                             $('#edit-emp-telp').val(response.telp_karyawan);
-                            $('#edit-avatar-upload').val(response.ava_karyawan);
                             $('#edit-emp-bday-place').val(response.bplace_karyawan);
-                            $('#edit-emp-birth-date').val(response.bdate_karyawan);
+                            $('#edit-emp-birth-date').val(response.bdate_karyawan
+                                .substr(0, 10));
 
-
-
-// edit_karyawan_id
-// edit-emp-name
-// edit-emp-religion
-// edit-emp-addr
-// edit-emp-telp
-// edit-avatar-upload
-// edit-emp-bday-place
-// edit-emp-birth-date
-
-                            // setEmpList(response);
-
+                            setAvatar(response);
+                            setReligion(response);
                             console.log('SHOWING MODAL');
                             modalToShow.show();
                         },
@@ -272,31 +262,78 @@
                 }); // <-- Closing parenthesis for setTimeout
             });
 
-
-
-
-            function setEmpList(response) {
-                var empSelect = $('#' + modalId +
-                    ' #edit-role-karyawan-id');
-                empSelect.empty(); // Clear existing options
-                empSelect.append($('<option>', {
-                    value: "",
-                    text: "Select Employee"
-                }));
-                $.each(response.employeeList, function(index,
-                    empOption) {
-                    var option = $('<option>', {
-                        value: empOption.value,
-                        text: `[${empOption.value}] ${empOption.text}`
-                    });
-                    if (empOption.selected) {
-                        option.attr('selected',
-                            'selected'); // Select the option
-                    }
-                    empSelect.append(option);
-                });
-
+            function setAvatar(response) {
+                const uploadedAvatar = document.getElementById('avatar-upload-img-2');
+                if (response.ava_karyawan) {
+                    const imgFromDB = '{{ asset('public/avatar/uploads') }}/' + response.ava_karyawan;
+                    const img = new Image();
+                    img.onload = function() {
+                        uploadedAvatar.src = img.src;
+                    };
+                    img.src = imgFromDB;
+                } else {
+                    uploadedAvatar.src = '{{ asset(env('APP_NOIMAGE')) }}';
+                }
             }
+
+            function setReligion(response) {
+                var empReligionSelect = $('#' + modalId + ' select[name="edit-emp-religion"]');
+                empReligionSelect.empty(); // Clear existing options
+                var receivedReligion = response.reli_karyawan;
+                var religionList = [{
+                        // value: '',
+                        text: 'Select Religion',
+                        selected: receivedReligion === ''
+                    },
+                    {
+                        value: 'Islam',
+                        text: 'Islam',
+                        selected: receivedReligion === 'Islam'
+                    },
+                    {
+                        value: 'Kristen',
+                        text: 'Kristen',
+                        selected: receivedReligion === 'Kristen'
+                    },
+                    {
+                        value: 'Hindu',
+                        text: 'Hindu',
+                        selected: receivedReligion === 'Hindu'
+                    },
+                    {
+                        value: 'Buddha',
+                        text: 'Buddha',
+                        selected: receivedReligion === 'Buddha'
+                    },
+                    {
+                        value: 'Konghucu',
+                        text: 'Konghucu',
+                        selected: receivedReligion === 'Konghucu'
+                    }
+                ];
+
+                $.each(religionList, function(index, empReligionOption) {
+                    var option;
+                    if (index === 0) {
+                        option = $('<option disabled>');
+                        option.attr('value', empReligionOption.value);
+                        option.text(`${empReligionOption.text}`);
+                    } else {
+                        option = $('<option>');
+                        option.attr('value', empReligionOption.value);
+                        option.text(`${empReligionOption.text}`);
+                    }
+
+                    if (empReligionOption.selected) {
+                        option.attr('selected', 'selected');
+                    }
+
+                    empReligionSelect.append(option);
+                });
+            }
+
+
+
 
             const saveRecordBtn = document.querySelector('#' + modalId + ' #confirmSave');
             if (saveRecordBtn) {

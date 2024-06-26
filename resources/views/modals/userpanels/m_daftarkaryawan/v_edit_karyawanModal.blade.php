@@ -9,10 +9,10 @@
                  </button>
              </div>
              <div class="modal-body">
-                 <form class="row g-2 needs-validation mt-1" method="POST" action="{{ route('m.emp.getemp') }}" id="edit_karyawanModalFORM"
+                 <form class="row g-2 needs-validation mt-1" method="POST" action="{{ route('m.emp.edit') }}" id="edit_karyawanModalFORM"
                      novalidate>
                      @csrf
-                     <input type="text" id="edit_karyawan_id" name="edit_karyawan_id" value="" />
+                     <input type="hidden" id="edit_karyawan_id" name="edit_karyawan_id" value="" />
                      <div class="col-xl-6 col-md-6 col-12">
                         <div class="form-group">
                             <label class="form-label" for="edit-emp-name">Employee Name</label>
@@ -25,7 +25,7 @@
                             <label>Religion</label>
                             <select class="select2 form-control form-control-lg"
                                 name="edit-emp-religion" id="edit-emp-religion">
-                                @php
+                                {{-- @php
                                     $religion = $authenticated_user_data->agama_karyawan;
                                 @endphp
                                 <option value=""
@@ -45,7 +45,7 @@
                                     Buddha</option>
                                 <option value="Konghucu"
                                     {{ $religion == 'Konghucu' ? 'selected' : '' }}>
-                                    Konghucu</option>
+                                    Konghucu</option> --}}
                             </select>
                         </div>
                     </div>
@@ -70,8 +70,7 @@
                             <a href="javascript:void(0);" class="mr-25 p-1 rounded">
                                 <img
                                 src="{{ env('APP_NOIMAGE') }}"
-                                {{-- src="{{ $authenticated_user_data->foto_karyawan == null ? env('APP_DEFAULT_AVATAR') : 'public/avatar/uploads/' . $authenticated_user_data->foto_karyawan }}" --}}
-                                    id="avatar-upload-img" class="rounded hover-qr-image" alt="profile image"
+                                    id="avatar-upload-img-2" class="rounded hover-qr-image" alt="profile image"
                                     height="80" width="80" />
                             </a>
                             <!-- upload and reset button -->
@@ -88,8 +87,8 @@
                         </div>
                         <script>
                             document.addEventListener('DOMContentLoaded', function() {
-                                const uploadedAvatar = document.getElementById('avatar-upload-img');
-                                const uploadInput = document.getElementById('avatar-upload');
+                                const uploadedAvatar = document.getElementById('avatar-upload-img-2');
+                                const uploadInput = document.getElementById('edit-avatar-upload');
                                 uploadInput.addEventListener('change', function() {
                                     const file = uploadInput.files[0];
                                     const reader = new FileReader();
@@ -105,11 +104,9 @@
                                 userProfilePhotoInput.addEventListener('change', function() {
                                     const file = this.files[0];
                                     if (file && file.type.startsWith('image/')) {
-                                        const img = document.createElement('img');
-                                        img.src = URL.createObjectURL(file);
-
-                                        img.onload = function() {
-                                            userProfilePhotoPreview.src = img.src;
+                                        userProfilePhotoPreview.src = URL.createObjectURL(file);
+                                        userProfilePhotoPreview.onload = function() {
+                                            userProfilePhotoPreview.src = userProfilePhotoPreview.src;
                                         };
                                     }
                                 });
@@ -123,6 +120,7 @@
                                 });
                             });
                         </script>
+
                         <!--/ header media -->
                     </div>
 

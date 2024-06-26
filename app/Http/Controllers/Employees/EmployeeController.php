@@ -146,6 +146,34 @@ class EmployeeController extends Controller
 
 
 
+    public function get_emp(Request $request)
+    {
+        $karyawanID = $request->input('karyawanID');
+        $daftarKaryawan = Karyawan_Model::where('id_karyawan', $karyawanID)->first();
+
+        if ($daftarKaryawan) {
+            // Return queried data as a JSON response
+            return response()->json([
+                'id_karyawan' => $daftarKaryawan->id_karyawan,
+                'na_karyawan' => $daftarKaryawan->na_karyawan,
+                'reli_karyawan' => $daftarKaryawan->agama_karyawan,
+                'addr_karyawan' => $daftarKaryawan->alamat_karyawan,
+                'telp_karyawan' => $daftarKaryawan->notelp_karyawan,
+                'ava_karyawan' => $daftarKaryawan->foto_karyawan ? $daftarKaryawan->foto_karyawan . '?v=' . time() : $daftarKaryawan->foto_karyawan,
+                'bplace_karyawan' => $daftarKaryawan->tlah_karyawan,
+                'bdate_karyawan' => $daftarKaryawan->tglah_karyawan,
+                // 'employeeList' => $employeeList,
+            ]);
+
+
+
+        } else {
+            // Handle the case when the user with the given user_id is not found
+            return response()->json(['error' => '[C] Karyawan not found'], 404);
+        }
+    }
+
+
 
 
 
