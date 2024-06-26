@@ -164,15 +164,93 @@ class EmployeeController extends Controller
                 'bdate_karyawan' => $daftarKaryawan->tglah_karyawan,
                 // 'employeeList' => $employeeList,
             ]);
-
-
-
         } else {
             // Handle the case when the user with the given user_id is not found
             return response()->json(['error' => '[C] Karyawan not found'], 404);
         }
     }
 
+
+    public function edit_emp(Request $request)
+    {
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'edit_karyawan_id' => 'sometimes|required',
+                'edit-emp-name' => 'sometimes|required',
+                'edit-emp-religion' => 'sometimes|required',
+                'edit-emp-addr' => 'sometimes|required',
+                'edit-emp-telp' => 'sometimes|required',
+                'edit-emp-bday-place' => 'sometimes|required',
+                'edit-emp-birth-date' => 'sometimes|date|required',
+                'bsvalidationcheckbox1' => 'required',
+            ],
+            [
+                'edit_karyawan_id.required' => 'The hidden employee-id field is required.',
+                'edit-emp-name.required' => 'The employee name field is required.',
+                'edit-emp-religion.required' => 'The religion field is required.',
+                'edit-emp-addr.required' => 'The address field is required.',
+                'edit-emp-telp.required' => 'The no.telp field is required.',
+                'edit-emp-bday-place.required' => 'The birth-place field is required.',
+                'edit-emp-birth-date.required' => 'The birth-date field is required.',
+                'edit-emp-birth-date.date' => 'The birth-date field must be a valid date.',
+                'bsvalidationcheckbox1.required' => 'The saving agreement field is required.',
+            ]
+        );
+        if ($validator->fails()) {
+            $toast_message = $validator->errors()->all();
+            Session::flash('errors', $toast_message);
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+
+        $edit_emp_name = $request->input('edit-emp-name');
+        $edit_emp_religion = $request->input('edit-emp-religion');
+        $edit_emp_addr = $request->input('edit-emp-addr');
+        $edit_emp_telp = $request->input('edit-emp-telp');
+        $edit_emp_avatar = $request->input('edit-avatar-upload');
+        $edit_emp_bday_place = $request->input('edit-emp-bday-place');
+        $edit_emp_birth_date = $request->input('edit-emp-birth-date');
+
+        $karyawanID = $request->input('edit_karyawan_id');
+        $daftarKaryawan = Karyawan_Model::where('id_karyawan', $karyawanID)->first();
+        if ($daftarKaryawan) {
+            // dd($request->hasFile('edit-avatar-upload'));
+            if ($request->hasFile('edit-avatar-upload')) {
+                $daftarKaryawan->na_karyawan = $edit_emp_name;
+                $daftarKaryawan->tlah_karyawan = $edit_emp_bday_place;
+                $daftarKaryawan->tglah_karyawan = $edit_emp_birth_date;
+                $daftarKaryawan->agama_karyawan = $edit_emp_religion;
+                $daftarKaryawan->alamat_karyawan = $edit_emp_addr;
+                $daftarKaryawan->notelp_karyawan = $edit_emp_telp;
+
+                $file = $request->file('edit-avatar-upload');
+                $filename = uniqid() . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path('avatar/uploads'), $filename);
+                $daftarKaryawan->foto_karyawan = $filename;
+                $daftarKaryawan->save();
+
+                $user = auth()->user();
+                $authenticated_user_data = Karyawan_Model::with('daftar_login.karyawan', 'jabatan.karyawan')->find($user->id_karyawan);
+                Session::put('authenticated_user_data', $authenticated_user_data);
+
+                Session::flash('success', ['Karyawan update successfully!']);
+            } else {    // Handle case where no logo file is provided
+                $daftarKaryawan->na_karyawan = $edit_emp_name;
+                $daftarKaryawan->tlah_karyawan = $edit_emp_bday_place;
+                $daftarKaryawan->tglah_karyawan = $edit_emp_birth_date;
+                $daftarKaryawan->agama_karyawan = $edit_emp_religion;
+                $daftarKaryawan->alamat_karyawan = $edit_emp_addr;
+                $daftarKaryawan->notelp_karyawan = $edit_emp_telp;
+                $daftarKaryawan->save();
+                Session::flash('success', ['Karyawan update successfully!']);
+            }
+        }else{
+            Session::flash('errors', ['Err[404]: Karyawan update failed!']);
+        }
+
+        return redirect()->back();
+    }
 
 
 

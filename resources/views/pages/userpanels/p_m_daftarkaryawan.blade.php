@@ -279,8 +279,8 @@
                 var resetButton = document.querySelector('.acc-avatar-reset-edit');
                 resetButton.addEventListener('click', function(e) {
                     e.preventDefault();
+                    uploadInput.value = null;
                     uploadedAvatar.src = imgFromDB;
-                        uploadInput.value = null;
                 });
             }
 
