@@ -80,7 +80,7 @@
                                 <input type="file" id="edit-avatar-upload" name="edit-avatar-upload" hidden
                                     accept="image/png, image/jpeg, image/*" />
                                 <button
-                                    class="btn btn-sm acc-avatar-reset btn-outline-secondary mb-75">Reset</button>
+                                    class="btn btn-sm acc-avatar-reset-edit btn-outline-secondary mb-75">Reset</button>
                                 <p>Allowed JPG, GIF or PNG. Max size of 5MB</p>
                             </div>
                             <!--/ upload and reset button -->
@@ -110,14 +110,14 @@
                                         };
                                     }
                                 });
-                                var resetButton = document.querySelector('.acc-avatar-reset');
-                                resetButton.addEventListener('click', function(e) {
-                                    e.preventDefault();
-                                    userProfilePhotoPreview.src =
-                                        // '{{ $authenticated_user_data->foto_karyawan == null ? env('APP_DEFAULT_AVATAR') : 'public/avatar/uploads/' . $authenticated_user_data->foto_karyawan }}';
-                                        '{{env('APP_NOIMAGE')}}';
-                                    userProfilePhotoInput.value = null;
-                                });
+                                // var resetButton = document.querySelector('.acc-avatar-reset-edit');
+                                // resetButton.addEventListener('click', function(e) {
+                                //     e.preventDefault();
+                                //     userProfilePhotoPreview.src =
+                                //         // '{{ $authenticated_user_data->foto_karyawan == null ? env('APP_DEFAULT_AVATAR') : 'public/avatar/uploads/' . $authenticated_user_data->foto_karyawan }}';
+                                //         '{{env('APP_NOIMAGE')}}';
+                                //     userProfilePhotoInput.value = null;
+                                // });
                             });
                         </script>
 

@@ -264,8 +264,8 @@
 
             function setAvatar(response) {
                 const uploadedAvatar = document.getElementById('avatar-upload-img-2');
+                const imgFromDB = '{{ asset('public/avatar/uploads') }}/' + response.ava_karyawan;
                 if (response.ava_karyawan) {
-                    const imgFromDB = '{{ asset('public/avatar/uploads') }}/' + response.ava_karyawan;
                     const img = new Image();
                     img.onload = function() {
                         uploadedAvatar.src = img.src;
@@ -274,6 +274,14 @@
                 } else {
                     uploadedAvatar.src = '{{ asset(env('APP_NOIMAGE')) }}';
                 }
+
+                const uploadInput = document.getElementById('edit-avatar-upload');
+                var resetButton = document.querySelector('.acc-avatar-reset-edit');
+                resetButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    uploadedAvatar.src = imgFromDB;
+                        uploadInput.value = null;
+                });
             }
 
             function setReligion(response) {
