@@ -53,13 +53,13 @@
                             <table id="daftarLoginKaryawanTable" class="table table-striped">
                                 <thead>
                                     <tr>
+                                        <th>Act</th>
                                         <th>Employee Name</th>
                                         <th>Username</th>
                                         <th>Email</th>
                                         <th>Avatar</th>
                                         <th>Created</th>
                                         <th>Last-Update</th>
-                                        <th>Act</th>
                                     </tr>
                                 </thead>
                                 <tbody>
