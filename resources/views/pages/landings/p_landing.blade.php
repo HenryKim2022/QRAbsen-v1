@@ -83,7 +83,7 @@
                                 }
                             }
                         </style>
-                        <div class="position-relative">
+                        <div class="position-relative d-none">
                             <!-- app picture -->
                             <div class="AppMain-img-container d-flex align-items-center">
                                 <!-- app title -->
