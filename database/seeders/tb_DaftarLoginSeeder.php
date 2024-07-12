@@ -14,7 +14,7 @@ class tb_DaftarLoginSeeder extends Seeder
     public function run(): void
     {
         $loginList = [
-            ['admin', 'admin@mail.com', 'S.A.M..', 1],
+            ['admin', 'admin@mail.com', 'S.A.M.. :VUWOo1', 1],
             ['karyawan1', 'karyawan@mail.com', '123456', 2],
         ]; // Example userlogin values
 
