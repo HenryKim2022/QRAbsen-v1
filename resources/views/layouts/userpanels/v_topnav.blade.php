@@ -280,10 +280,8 @@
                     aria-expanded="false">
                     <div class="user-nav d-sm-flex d-none"><span
                             class="user-name font-weight-bolder">{{ $authenticated_user_data->na_karyawan ?: 'My Girlfriend :)' }}
-                        </span><span
-                            class="user-status">
-                            {{-- {{ $authenticated_user_data->daftar_login ? $authenticated_user_data->daftar_login->type : ($authenticated_user_data->daftar_login_4get ? $authenticated_user_data->daftar_login_4get->type : '') }} --}}
                         </span>
+                        <span class="user-status">{{ $authenticated_user_data->daftar_login ? $authenticated_user_data->daftar_login->type : ($authenticated_user_data->daftar_login_4get ? $authenticated_user_data->daftar_login_4get->type : '') }}</span>
                         {{--  $authenticated_user_data->daftar_login->type ?: 'The Only One :)' }} --}}
 
 
