@@ -120,7 +120,7 @@
                                     }
                                 }
                             </style>
-                            <div class="position-relative">
+                            <div class="position-relative d-none">
                                 <!-- app picture -->
                                 <div class="AppMain-img-container d-flex align-items-center">
                                     <!-- app title -->
@@ -131,7 +131,7 @@
                                         <p class="font-small-1 fw-600 font-italic text-end">"Do not late !"</p>
                                     </div>
                                     <!-- app img -->
-                                    <div class="AppMain-img d-none">
+                                    <div class="AppMain-img">
                                         <svg viewBox="0 0 139 95" version="1.1" xmlns="http://www.w3.org/2000/svg"
                                             xmlns:xlink="http://www.w3.org/1999/xlink" height="24">
                                             <defs>
