@@ -7,7 +7,8 @@
                     target="_blank">{{ $site_name->text_setting }}</a>
                 <span class="d-none d-sm-inline-block">, All rights Reserved</span>
             </span>
-            <span class="float-md-right d-none d-md-block">Hand-crafted & Made with<i data-feather="heart"></i></span>
+            <span class="float-md-right d-none d-md-block">Technopex {{ $site_year->text_setting }}</i></span>
+            {{-- <span class="float-md-right d-none d-md-block">Hand-crafted & Made with<i data-feather="heart"></i></span> --}}
         </p>
     @endif
 </footer>
