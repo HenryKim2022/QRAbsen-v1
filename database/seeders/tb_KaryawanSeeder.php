@@ -20,7 +20,7 @@ class tb_KaryawanSeeder extends Seeder
                 'agama_karyawan' => 'Islam',
                 'alamat_karyawan' => '123 Main St',
                 'notelp_karyawan' => '123456789',
-                'foto_karyawan' => '6675cb4dcd9ee.jpg'
+                'foto_karyawan' => '670b1fb9c174a.jpg'
             ],
             [
                 'na_karyawan' => 'Jane Smith',
