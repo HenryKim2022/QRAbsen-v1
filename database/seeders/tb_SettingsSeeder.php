@@ -16,7 +16,7 @@ class tb_SettingsSeeder extends Seeder
         $settingsList = [
             [
                 'na_setting' => 'CompanyName',
-                'text_setting' => 'PT. Fahove Indonesia',
+                'text_setting' => 'PT. XYZ',
                 'status_setting' => 1,
                 'url_setting' => env('APP_URL'),
             ],
@@ -42,7 +42,7 @@ class tb_SettingsSeeder extends Seeder
             ],
             [
                 'na_setting' => 'SiteBrand',
-                'text_setting' => 'PT. Fahove Indonesia',
+                'text_setting' => 'PT. XYZ',
                 'status_setting' => 1,
                 'url_setting' => '',
             ],
